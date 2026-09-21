@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Unit Tests (iOS Simulator)
+    # GitHub has no iOS runners — use a Mac runner and target an iOS Simulator.
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build and run unit tests
+        run: |
+          # Pick an available iPhone simulator instead of hard-coding a device name
+          # (names change across Xcode versions).
+          DESTINATION=$(
+            xcodebuild -showdestinations \
+              -project ContactsMigration.xcodeproj \
+              -scheme ContactsMigration \
+              2>/dev/null \
+            | sed -n 's/.*platform:iOS Simulator,.*id:\([^,]*\),.*name:iPhone[^,]*.*/id=\1/p' \
+            | head -n 1
+          )
+
+          if [ -z "$DESTINATION" ]; then
+            echo "No iPhone iOS Simulator destination found"
+            xcodebuild -showdestinations -project ContactsMigration.xcodeproj -scheme ContactsMigration
+            exit 1
+          fi
+
+          echo "Using destination: $DESTINATION"
+
+          xcodebuild test \
+            -project ContactsMigration.xcodeproj \
+            -scheme ContactsMigration \
+            -destination "platform=iOS Simulator,$DESTINATION" \
+            -only-testing:ContactsMigrationTests \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults
+          path: TestResults.xcresult
+          if-no-files-found: ignore
