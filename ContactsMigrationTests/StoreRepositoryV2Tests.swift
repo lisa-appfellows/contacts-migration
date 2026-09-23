@@ -16,6 +16,7 @@ final class StoreRepositoryV2Tests: XCTestCase {
     override func setUpWithError() throws {
         container = try TestContainers.v2()
         context = ModelContext(container)
+        context.autosaveEnabled = false
         repo = StoreRepositoryV2(context: context)
     }
 
@@ -99,19 +100,22 @@ final class StoreRepositoryV2Tests: XCTestCase {
         try repo.save()
         XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneNumberV2>()).count, 1)
 
-        repo.delete(contact)
+        repo.deleteContact(contact)
         try repo.save()
 
-        XCTAssertTrue(try context.fetch(FetchDescriptor<ContactV2>()).isEmpty)
-        XCTAssertTrue(try context.fetch(FetchDescriptor<PhoneNumberV2>()).isEmpty)
+        let verify = ModelContext(container)
+        verify.autosaveEnabled = false
+        XCTAssertTrue(try verify.fetch(FetchDescriptor<ContactV2>()).isEmpty)
+        XCTAssertTrue(try verify.fetch(FetchDescriptor<PhoneNumberV2>()).isEmpty)
     }
 
     func testDiscard_rollsBackUnsavedCreate() throws {
         repo.createContact(from: ContactDTOV2(firstName: "Unsaved"))
-        XCTAssertEqual(try context.fetch(FetchDescriptor<ContactV2>()).count, 1)
+        XCTAssertTrue(context.hasChanges, "Insert should be pending before discard")
 
         repo.discard()
 
+        XCTAssertFalse(context.hasChanges)
         XCTAssertTrue(try context.fetch(FetchDescriptor<ContactV2>()).isEmpty)
     }
 

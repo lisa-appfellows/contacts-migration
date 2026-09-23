@@ -52,6 +52,14 @@ final class StoreRepositoryV2: StoreRepository {
         try updatePhoneNumberList(dto.phoneNumbers, on: model)
     }
 
+    func deleteContact(_ model: ContactV2) {
+        for phone in model.phoneNumbers ?? [] {
+            context.delete(phone)
+        }
+        model.phoneNumbers = []
+        context.delete(model)
+    }
+
     @discardableResult
     func createPhoneNumber(from dto: PhoneNumberDTOV2) -> PhoneNumberV2 {
         let newModel = PhoneNumberV2(from: dto)
