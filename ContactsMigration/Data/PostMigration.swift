@@ -6,19 +6,36 @@
 //
 
 import Foundation
+import OSLog
 import SwiftData
+
+enum PostMigrationError: Error, LocalizedError {
+    case fetchModelFailure
+    var errorDescription: String? {
+        switch self {
+        case .fetchModelFailure:
+            return "Failed to fetch models, aborting post-migration."
+        }
+    }
+}
 
 @ModelActor
 actor PostMigration {
     static let currentVersion = 2
+    private let logger = AppLogger.postMigration
 
-    func runIfNeeded() {
+    func runIfNeeded() throws {
         let currentVersion = Self.currentVersion
         let predicate = #Predicate<ContactV2> { $0.repairVersion < currentVersion }
         let descriptor = FetchDescriptor<ContactV2>(predicate: predicate)
-        let models = fetchContacts(descriptor)
+        let models = try fetchContacts(descriptor)
 
-        guard models.count > 0 else { return }
+        guard models.count > 0 else {
+            logger.debug("No models to repair")
+            return
+        }
+
+        logger.info("Repairing \(models.count) to version 2")
 
         for model in models {
             migrateToV2(model)
@@ -31,11 +48,12 @@ actor PostMigration {
         guard model.repairVersion < version,
               let originalNumber = model.phoneNumber 
         else {
-            model.repairVersion = version
-            save(model)
+            logger.debug("Repair-noop for version 2; stableId: \(model.stableId)")
+            saveToNewVersion(model, version: version)
             return
         }
 
+        logger.debug("Replacing phoneNumber to appended PhoneNumber model on ContactV2; stableId: \(model.stableId)")
         var newNumberDTO = PhoneNumberDTOV2(tag: .mobile, number: originalNumber)
         model.phoneNumber = nil
 
@@ -48,26 +66,27 @@ actor PostMigration {
         modelContext.insert(newNumberModel)
 
         model.phoneNumbers?.append(newNumberModel)
-        model.repairVersion = version
 
-        save(model)
+        saveToNewVersion(model, version: version)
     }
 
-    private func fetchContacts(_ descriptor: FetchDescriptor<ContactV2>) -> [ContactV2] {
+    private func fetchContacts(_ descriptor: FetchDescriptor<ContactV2>) throws -> [ContactV2] {
         do {
             return try modelContext.fetch(descriptor)
         } catch {
-            print("Failed to fetch models: \(error.localizedDescription)")
-            return []
+            logger.error("Failed to fetch models, aborting repair migration; error: \(error.localizedDescription)")
+            throw PostMigrationError.fetchModelFailure
         }
     }
 
-    private func save(_ model: ContactV2) {
+    private func saveToNewVersion(_ model: ContactV2, version: Int) {
+        let previousVersion = model.repairVersion
+        model.repairVersion = version
+
         do {
             try modelContext.save()
         } catch {
-            // TODO: Set up logging
-            print("Failed to save: stableId \(model.stableId); fromVersion \(model.repairVersion) toVersion \(Self.currentVersion); error: \(error.localizedDescription)")
+            logger.error("Failed to save: stableId \(model.stableId); fromVersion \(previousVersion) toVersion \(version); error: \(error.localizedDescription)")
             modelContext.rollback()
         }
     }

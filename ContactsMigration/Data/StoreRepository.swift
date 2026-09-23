@@ -6,10 +6,21 @@
 //
 
 import Foundation
+import OSLog
 import SwiftData
 
 protocol RepairableModel: PersistentModel {
     var repairVersion: Int { get set }
+}
+
+enum StoreRepositoryError: Error, LocalizedError {
+    case saveContextFailureRollback
+    var errorDescription: String? {
+        switch self {
+        case .saveContextFailureRollback:
+            return "Failed to save context, rolling back."
+        }
+    }
 }
 
 @MainActor
@@ -22,9 +33,9 @@ extension StoreRepository {
         do {
             try context.save()
         } catch {
-            print("Failed to save")
+            AppLogger.storeRepository.error("Failed to save context, rolling back; error: \(error.localizedDescription)")
             discard()
-            throw error
+            throw StoreRepositoryError.saveContextFailureRollback
         }
     }
 

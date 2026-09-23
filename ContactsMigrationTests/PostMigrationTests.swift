@@ -20,7 +20,7 @@ final class PostMigrationTests: XCTestCase {
         try context.save()
 
         let migration = PostMigration(modelContainer: container)
-        await migration.runIfNeeded()
+        try await migration.runIfNeeded()
 
         let verifyContext = ModelContext(container)
         let fetched = try verifyContext.fetch(FetchDescriptor<ContactV2>())
@@ -46,7 +46,7 @@ final class PostMigrationTests: XCTestCase {
         try context.save()
 
         let migration = PostMigration(modelContainer: container)
-        await migration.runIfNeeded()
+        try await migration.runIfNeeded()
 
         let verifyContext = ModelContext(container)
         let fetched = try verifyContext.fetch(FetchDescriptor<ContactV2>())
