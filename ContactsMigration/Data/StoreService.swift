@@ -5,23 +5,44 @@
 //  Created by Lisa Fellows on 2026-09-21.
 //
 
+import OSLog
 import SwiftData
 import SwiftUI
 
+enum StoreEvent: Equatable { case none, v2ContainerFailed }
+
+enum StoreLoadingState {
+    case loading
+    case containerFailure
+    case v1Ready(ModelContainer, event: StoreEvent)
+    case v2Migrating(ModelContainer)
+    case v2Ready(ModelContainer)
+    case v2NeedsRepair(ModelContainer)
+}
+
 @Observable
 final class StoreService {
+    private let logger = AppLogger.storeService
+
     private let inMemoryOnly: Bool
-    private(set) var modelContainer: ModelContainer
+    private var modelContainer: ModelContainer?
 
     private(set) var isVersion1 = true
-    private(set) var isLoading = true
+    private(set) var loadingState = StoreLoadingState.loading
 
     var canMigrate: Bool { isVersion1 }
 
     init(inMemoryOnly: Bool = false) {
         self.inMemoryOnly = inMemoryOnly
-        self.modelContainer = Self.container(isVersion1: true, inMemoryOnly: inMemoryOnly)
-        isLoading = false
+
+        do {
+            let v1Container = try Self.containerV1(inMemoryOnly: inMemoryOnly)
+            self.modelContainer = v1Container
+            loadingState = .v1Ready(v1Container, event: .none)
+        } catch {
+            logger.error("Failed to create V1 model container; error: \(error.localizedDescription)")
+            loadingState = .containerFailure
+        }
     }
 
     @MainActor 
@@ -36,32 +57,62 @@ final class StoreService {
 
     func migrateToV2() {
         guard canMigrate else { return }
-        isLoading = true
-        modelContainer = Self.container(isVersion1: false, inMemoryOnly: inMemoryOnly)
-        isVersion1 = false
-        Task {
-            await runPostMigration()
-            isLoading = false
+
+        logger.info("Swapping from V1 to V2")
+        loadingState = .loading
+
+        do {
+            let v2Container = try Self.containerV2(inMemoryOnly: inMemoryOnly)
+            modelContainer = v2Container
+            isVersion1 = false
+            runPostMigration(v2Container)
+        } catch {
+            let errorDescription = error.localizedDescription
+            if let modelContainer {
+                logger.error("V2 failed to create new container; staying at V1 container; error: \(errorDescription)")
+                loadingState = .v1Ready(modelContainer, event: .v2ContainerFailed)
+            } else {
+                logger.error("V2 failed to create new container, failed to unwrap V1 container; error: \(errorDescription)")
+                loadingState = .containerFailure
+            }
         }
     }
 
-    private func runPostMigration() async {
+    func refreshRepairs() {
+        guard let modelContainer else {
+            loadingState = .containerFailure
+            logger.error("Failed to unwrap v2ModelContainer for refreshing repairs")
+            return
+        }
+
+        runPostMigration(modelContainer)
+    }
+
+    private func runPostMigration(_ container: ModelContainer) {
         guard !isVersion1 else { return }
-        await PostMigration(modelContainer: modelContainer).runIfNeeded()
+        loadingState = .v2Migrating(container)
+
+        Task {
+            var attempts = 0
+            while attempts < 3 {
+                do {
+                    try await PostMigration(modelContainer: container).runIfNeeded()
+                    logger.info("V2 post-migration complete after \(attempts) attempts")
+                    loadingState = .v2Ready(container)
+                    return
+                } catch {
+                    logger.error("V2 post-migration failed on \(attempts) attempt; error: \(error.localizedDescription)")
+                    attempts += 1
+                }
+            }
+            
+            logger.error("Post-migration failed after 3 attempts")
+            loadingState = .v2NeedsRepair(container)
+        }
     }
 }
 
 extension StoreService {
-    static func container(isVersion1: Bool, inMemoryOnly: Bool) -> ModelContainer {
-        do {
-            return isVersion1 ?
-            try containerV1(inMemoryOnly: inMemoryOnly) :
-            try containerV2(inMemoryOnly: inMemoryOnly)
-        } catch {
-            fatalError("Failed to create container for edition: \(isVersion1 ? 1 : 2)")
-        }
-    }
-
     static func containerV1(inMemoryOnly: Bool) throws -> ModelContainer {
         try ModelContainer(
             for: Schema(versionedSchema: SchemaV1.self),
