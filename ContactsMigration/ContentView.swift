@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(StoreService.self) private var storeService
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            if storeService.isLoading {
+                ProgressView()
+            } else {
+                Text("Hello")
+            }
         }
-        .padding()
+        .modelContainer(storeService.modelContainer)
     }
 }
 
 #Preview {
     ContentView()
+        .environment(StoreService(inMemoryOnly: true))
 }
