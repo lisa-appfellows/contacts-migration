@@ -11,9 +11,29 @@
 		0440D5463061C1AF00BE4D30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5453061C1AF00BE4D30 /* ContentView.swift */; };
 		0440D5483061C1B000BE4D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0440D5473061C1B000BE4D30 /* Assets.xcassets */; };
 		0440D54B3061C1B000BE4D30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0440D54A3061C1B000BE4D30 /* Preview Assets.xcassets */; };
-		0440D5553061C1B000BE4D30 /* ContactsMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5543061C1B000BE4D30 /* ContactsMigrationTests.swift */; };
 		0440D55F3061C1B000BE4D30 /* ContactsMigrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D55E3061C1B000BE4D30 /* ContactsMigrationUITests.swift */; };
 		0440D5613061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5603061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift */; };
+		0440D5783061CA0900BE4D30 /* PostMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5773061CA0900BE4D30 /* PostMigration.swift */; };
+		0440D59430620F9400BE4D30 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D59330620F9400BE4D30 /* StoreService.swift */; };
+		0440D59C306214C800BE4D30 /* MigrationPlanV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D59B306214C800BE4D30 /* MigrationPlanV2.swift */; };
+		0440D59E306214F100BE4D30 /* SchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D59D306214F100BE4D30 /* SchemaV2.swift */; };
+		0440D5A830621BA400BE4D30 /* StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5A730621BA400BE4D30 /* StoreRepository.swift */; };
+		0440D5AC3063329A00BE4D30 /* StoreRepositoryV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5AB3063329A00BE4D30 /* StoreRepositoryV2.swift */; };
+		0440D5AE306332BF00BE4D30 /* StoreRepositoryV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5AD306332BF00BE4D30 /* StoreRepositoryV1.swift */; };
+		0440D5B03063330100BE4D30 /* ContactV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5AF3063330100BE4D30 /* ContactV1.swift */; };
+		0440D5B23063332A00BE4D30 /* ContactDTOV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B13063332A00BE4D30 /* ContactDTOV1.swift */; };
+		0440D5B43063335100BE4D30 /* ContactV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B33063335100BE4D30 /* ContactV2.swift */; };
+		0440D5B63063336800BE4D30 /* PhoneNumberV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B53063336800BE4D30 /* PhoneNumberV2.swift */; };
+		0440D5B83063337F00BE4D30 /* ContactDTOV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B73063337F00BE4D30 /* ContactDTOV2.swift */; };
+		0440D5BA3063339300BE4D30 /* PhoneNumberDTOV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B93063339300BE4D30 /* PhoneNumberDTOV2.swift */; };
+		0440D5BC3063340500BE4D30 /* MigrationPlanV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5BB3063340500BE4D30 /* MigrationPlanV1.swift */; };
+		0440D5BE3063343B00BE4D30 /* SchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5BD3063343B00BE4D30 /* SchemaV1.swift */; };
+		0440D5C73063A00700BE4D30 /* TestContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C13063A00100BE4D30 /* TestContainers.swift */; };
+		0440D5C83063A00800BE4D30 /* StoreRepositoryV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C23063A00200BE4D30 /* StoreRepositoryV1Tests.swift */; };
+		0440D5C93063A00900BE4D30 /* StoreRepositoryV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C33063A00300BE4D30 /* StoreRepositoryV2Tests.swift */; };
+		0440D5CA3063A00A00BE4D30 /* PostMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C43063A00400BE4D30 /* PostMigrationTests.swift */; };
+		0440D5CB3063A00B00BE4D30 /* ContactDTOV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C53063A00500BE4D30 /* ContactDTOV2Tests.swift */; };
+		0440D5CC3063A00C00BE4D30 /* SchemaVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C63063A00600BE4D30 /* SchemaVersionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +60,30 @@
 		0440D5473061C1B000BE4D30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0440D54A3061C1B000BE4D30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0440D5503061C1B000BE4D30 /* ContactsMigrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsMigrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0440D5543061C1B000BE4D30 /* ContactsMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMigrationTests.swift; sourceTree = "<group>"; };
+		0440D5C13063A00100BE4D30 /* TestContainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestContainers.swift; sourceTree = "<group>"; };
+		0440D5C23063A00200BE4D30 /* StoreRepositoryV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepositoryV1Tests.swift; sourceTree = "<group>"; };
+		0440D5C33063A00300BE4D30 /* StoreRepositoryV2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepositoryV2Tests.swift; sourceTree = "<group>"; };
+		0440D5C43063A00400BE4D30 /* PostMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMigrationTests.swift; sourceTree = "<group>"; };
+		0440D5C53063A00500BE4D30 /* ContactDTOV2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDTOV2Tests.swift; sourceTree = "<group>"; };
+		0440D5C63063A00600BE4D30 /* SchemaVersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersionTests.swift; sourceTree = "<group>"; };
 		0440D55A3061C1B000BE4D30 /* ContactsMigrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsMigrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0440D55E3061C1B000BE4D30 /* ContactsMigrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMigrationUITests.swift; sourceTree = "<group>"; };
 		0440D5603061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMigrationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0440D5773061CA0900BE4D30 /* PostMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMigration.swift; sourceTree = "<group>"; };
+		0440D59330620F9400BE4D30 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
+		0440D59B306214C800BE4D30 /* MigrationPlanV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPlanV2.swift; sourceTree = "<group>"; };
+		0440D59D306214F100BE4D30 /* SchemaV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV2.swift; sourceTree = "<group>"; };
+		0440D5A730621BA400BE4D30 /* StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepository.swift; sourceTree = "<group>"; };
+		0440D5AB3063329A00BE4D30 /* StoreRepositoryV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepositoryV2.swift; sourceTree = "<group>"; };
+		0440D5AD306332BF00BE4D30 /* StoreRepositoryV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepositoryV1.swift; sourceTree = "<group>"; };
+		0440D5AF3063330100BE4D30 /* ContactV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactV1.swift; sourceTree = "<group>"; };
+		0440D5B13063332A00BE4D30 /* ContactDTOV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDTOV1.swift; sourceTree = "<group>"; };
+		0440D5B33063335100BE4D30 /* ContactV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactV2.swift; sourceTree = "<group>"; };
+		0440D5B53063336800BE4D30 /* PhoneNumberV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberV2.swift; sourceTree = "<group>"; };
+		0440D5B73063337F00BE4D30 /* ContactDTOV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDTOV2.swift; sourceTree = "<group>"; };
+		0440D5B93063339300BE4D30 /* PhoneNumberDTOV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberDTOV2.swift; sourceTree = "<group>"; };
+		0440D5BB3063340500BE4D30 /* MigrationPlanV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPlanV1.swift; sourceTree = "<group>"; };
+		0440D5BD3063343B00BE4D30 /* SchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +137,7 @@
 				0440D5433061C1AF00BE4D30 /* ContactsMigrationApp.swift */,
 				0440D5453061C1AF00BE4D30 /* ContentView.swift */,
 				0440D5473061C1B000BE4D30 /* Assets.xcassets */,
+				0440D56D3061C74100BE4D30 /* Data */,
 				0440D5493061C1B000BE4D30 /* Preview Content */,
 			);
 			path = ContactsMigration;
@@ -113,7 +154,12 @@
 		0440D5533061C1B000BE4D30 /* ContactsMigrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				0440D5543061C1B000BE4D30 /* ContactsMigrationTests.swift */,
+				0440D5C13063A00100BE4D30 /* TestContainers.swift */,
+				0440D5C23063A00200BE4D30 /* StoreRepositoryV1Tests.swift */,
+				0440D5C33063A00300BE4D30 /* StoreRepositoryV2Tests.swift */,
+				0440D5C43063A00400BE4D30 /* PostMigrationTests.swift */,
+				0440D5C53063A00500BE4D30 /* ContactDTOV2Tests.swift */,
+				0440D5C63063A00600BE4D30 /* SchemaVersionTests.swift */,
 			);
 			path = ContactsMigrationTests;
 			sourceTree = "<group>";
@@ -125,6 +171,76 @@
 				0440D5603061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift */,
 			);
 			path = ContactsMigrationUITests;
+			sourceTree = "<group>";
+		};
+		0440D56D3061C74100BE4D30 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0440D5773061CA0900BE4D30 /* PostMigration.swift */,
+				0440D59330620F9400BE4D30 /* StoreService.swift */,
+				0440D5A730621BA400BE4D30 /* StoreRepository.swift */,
+				0440D5A93063327700BE4D30 /* Version1 */,
+				0440D5AA3063327E00BE4D30 /* Version2 */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0440D5A93063327700BE4D30 /* Version1 */ = {
+			isa = PBXGroup;
+			children = (
+				0440D5BB3063340500BE4D30 /* MigrationPlanV1.swift */,
+				0440D5BD3063343B00BE4D30 /* SchemaV1.swift */,
+				0440D5AD306332BF00BE4D30 /* StoreRepositoryV1.swift */,
+				0440D5BF3063346000BE4D30 /* Models */,
+				0440D5C03063346700BE4D30 /* DTOs */,
+			);
+			path = Version1;
+			sourceTree = "<group>";
+		};
+		0440D5AA3063327E00BE4D30 /* Version2 */ = {
+			isa = PBXGroup;
+			children = (
+				0440D59B306214C800BE4D30 /* MigrationPlanV2.swift */,
+				0440D59D306214F100BE4D30 /* SchemaV2.swift */,
+				0440D5AB3063329A00BE4D30 /* StoreRepositoryV2.swift */,
+				0440D5C23063349100BE4D30 /* DTOs */,
+				0440D5C13063348600BE4D30 /* Models */,
+			);
+			path = Version2;
+			sourceTree = "<group>";
+		};
+		0440D5BF3063346000BE4D30 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0440D5AF3063330100BE4D30 /* ContactV1.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0440D5C03063346700BE4D30 /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				0440D5B13063332A00BE4D30 /* ContactDTOV1.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		0440D5C13063348600BE4D30 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0440D5B33063335100BE4D30 /* ContactV2.swift */,
+				0440D5B53063336800BE4D30 /* PhoneNumberV2.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0440D5C23063349100BE4D30 /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				0440D5B73063337F00BE4D30 /* ContactDTOV2.swift */,
+				0440D5B93063339300BE4D30 /* PhoneNumberDTOV2.swift */,
+			);
+			path = DTOs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +373,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0440D59430620F9400BE4D30 /* StoreService.swift in Sources */,
+				0440D5783061CA0900BE4D30 /* PostMigration.swift in Sources */,
+				0440D5B03063330100BE4D30 /* ContactV1.swift in Sources */,
+				0440D59E306214F100BE4D30 /* SchemaV2.swift in Sources */,
 				0440D5463061C1AF00BE4D30 /* ContentView.swift in Sources */,
+				0440D5AC3063329A00BE4D30 /* StoreRepositoryV2.swift in Sources */,
+				0440D5BA3063339300BE4D30 /* PhoneNumberDTOV2.swift in Sources */,
+				0440D5AE306332BF00BE4D30 /* StoreRepositoryV1.swift in Sources */,
+				0440D5A830621BA400BE4D30 /* StoreRepository.swift in Sources */,
+				0440D5B63063336800BE4D30 /* PhoneNumberV2.swift in Sources */,
 				0440D5443061C1AF00BE4D30 /* ContactsMigrationApp.swift in Sources */,
+				0440D5B23063332A00BE4D30 /* ContactDTOV1.swift in Sources */,
+				0440D5BC3063340500BE4D30 /* MigrationPlanV1.swift in Sources */,
+				0440D5B43063335100BE4D30 /* ContactV2.swift in Sources */,
+				0440D5BE3063343B00BE4D30 /* SchemaV1.swift in Sources */,
+				0440D5B83063337F00BE4D30 /* ContactDTOV2.swift in Sources */,
+				0440D59C306214C800BE4D30 /* MigrationPlanV2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +397,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0440D5553061C1B000BE4D30 /* ContactsMigrationTests.swift in Sources */,
+				0440D5C73063A00700BE4D30 /* TestContainers.swift in Sources */,
+				0440D5C83063A00800BE4D30 /* StoreRepositoryV1Tests.swift in Sources */,
+				0440D5C93063A00900BE4D30 /* StoreRepositoryV2Tests.swift in Sources */,
+				0440D5CA3063A00A00BE4D30 /* PostMigrationTests.swift in Sources */,
+				0440D5CB3063A00B00BE4D30 /* ContactDTOV2Tests.swift in Sources */,
+				0440D5CC3063A00C00BE4D30 /* SchemaVersionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
