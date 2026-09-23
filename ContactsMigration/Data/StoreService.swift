@@ -25,7 +25,7 @@ final class StoreService {
     private let logger = AppLogger.storeService
 
     private let inMemoryOnly: Bool
-    private(set) var modelContainer: ModelContainer?
+    private var modelContainer: ModelContainer?
 
     private(set) var isVersion1 = true
     private(set) var loadingState = StoreLoadingState.loading

@@ -14,11 +14,11 @@ final class StoreServiceTests: XCTestCase {
 
         XCTAssertTrue(service.isVersion1)
         XCTAssertTrue(service.canMigrate)
-        guard case .v1Ready(_, let event) = service.loadingState else {
+        guard case .v1Ready(let container, let event) = service.loadingState else {
             return XCTFail("Expected v1Ready, got \(service.loadingState)")
         }
         XCTAssertEqual(event, .none)
-        XCTAssertNotNil(service.modelContainer)
+        XCTAssertNotNil(container)
     }
 
     @MainActor
