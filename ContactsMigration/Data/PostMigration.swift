@@ -26,8 +26,8 @@ actor PostMigration {
 
     func runIfNeeded() throws {
         let currentVersion = Self.currentVersion
-        let predicate = #Predicate<ContactV2> { $0.repairVersion < currentVersion }
-        let descriptor = FetchDescriptor<ContactV2>(predicate: predicate)
+        let predicate = #Predicate<V2Contact> { $0.repairVersion < currentVersion }
+        let descriptor = FetchDescriptor<V2Contact>(predicate: predicate)
         let models = try fetchContacts(descriptor)
 
         guard models.count > 0 else {
@@ -42,7 +42,7 @@ actor PostMigration {
         }
     }
 
-    private func migrateToV2(_ model: ContactV2) {
+    private func migrateToV2(_ model: V2Contact) {
         let version = 2
 
         guard model.repairVersion < version,
@@ -54,7 +54,7 @@ actor PostMigration {
         }
 
         logger.debug("Replacing phoneNumber to appended PhoneNumber model on ContactV2; stableId: \(model.stableId)")
-        var newNumberDTO = PhoneNumberDTOV2(tag: .mobile, number: originalNumber)
+        var newNumberDTO = PhoneNumberDTO(tag: .mobile, number: originalNumber)
         model.phoneNumber = nil
 
         if model.phoneNumbers == nil { model.phoneNumbers = [] }
@@ -62,7 +62,7 @@ actor PostMigration {
             newNumberDTO.isPrimary = true
         }
 
-        let newNumberModel = SchemaV2.PhoneNumber(from: newNumberDTO)
+        let newNumberModel = V2Schema.PhoneNumber(from: newNumberDTO)
         modelContext.insert(newNumberModel)
 
         model.phoneNumbers?.append(newNumberModel)
@@ -70,7 +70,7 @@ actor PostMigration {
         saveToNewVersion(model, version: version)
     }
 
-    private func fetchContacts(_ descriptor: FetchDescriptor<ContactV2>) throws -> [ContactV2] {
+    private func fetchContacts(_ descriptor: FetchDescriptor<V2Contact>) throws -> [V2Contact] {
         do {
             return try modelContext.fetch(descriptor)
         } catch {
@@ -79,7 +79,7 @@ actor PostMigration {
         }
     }
 
-    private func saveToNewVersion(_ model: ContactV2, version: Int) {
+    private func saveToNewVersion(_ model: V2Contact, version: Int) {
         let previousVersion = model.repairVersion
         model.repairVersion = version
 

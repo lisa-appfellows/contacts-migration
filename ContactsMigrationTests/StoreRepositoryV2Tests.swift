@@ -11,21 +11,21 @@ import XCTest
 final class StoreRepositoryV2Tests: XCTestCase {
     private var container: ModelContainer!
     private var context: ModelContext!
-    private var repo: StoreRepositoryV2!
+    private var repo: V2StoreRepository!
 
     override func setUpWithError() throws {
         container = try TestContainers.v2()
         context = ModelContext(container)
         context.autosaveEnabled = false
-        repo = StoreRepositoryV2(context: context)
+        repo = V2StoreRepository(context: context)
     }
 
     // MARK: - Contact create / update / delete
 
     func testCreateContact_withPhones_saveAndFetch() throws {
-        let mobile = PhoneNumberDTOV2(tag: .mobile, number: "555-0100", isPrimary: true)
-        let work = PhoneNumberDTOV2(tag: .work, number: "555-0101")
-        let dto = ContactDTOV2(
+        let mobile = PhoneNumberDTO(tag: .mobile, number: "555-0100", isPrimary: true)
+        let work = PhoneNumberDTO(tag: .work, number: "555-0101")
+        let dto = V2ContactDTO(
             firstName: "Grace",
             lastName: "Hopper",
             phoneNumbers: [mobile, work]
@@ -34,7 +34,7 @@ final class StoreRepositoryV2Tests: XCTestCase {
         let created = repo.createContact(from: dto)
         try repo.save()
 
-        let fetched = try context.fetch(FetchDescriptor<ContactV2>())
+        let fetched = try context.fetch(FetchDescriptor<V2Contact>())
         XCTAssertEqual(fetched.count, 1)
 
         let contact = try XCTUnwrap(fetched.first)
@@ -48,7 +48,7 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testCreateContact_withoutPhones() throws {
-        let contact = repo.createContact(from: ContactDTOV2(firstName: "Solo"))
+        let contact = repo.createContact(from: V2ContactDTO(firstName: "Solo"))
         try repo.save()
 
         XCTAssertEqual(contact.firstName, "Solo")
@@ -56,10 +56,10 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testUpdateContact_updatesScalarFields() throws {
-        let contact = repo.createContact(from: ContactDTOV2(firstName: "Alan"))
+        let contact = repo.createContact(from: V2ContactDTO(firstName: "Alan"))
         try repo.save()
 
-        let update = ContactDTOV2(
+        let update = V2ContactDTO(
             firstName: "Alan",
             lastName: "Turing",
             company: "Bletchley",
@@ -76,11 +76,11 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testUpdateContact_whenRepairBehind_throws() throws {
-        let contact = ContactV2(repairVersion: 1, firstName: "Behind")
+        let contact = V2Contact(repairVersion: 1, firstName: "Behind")
         context.insert(contact)
         try repo.save()
 
-        let dto = ContactDTOV2(firstName: "Updated")
+        let dto = V2ContactDTO(firstName: "Updated")
         XCTAssertThrowsError(try repo.updateContact(contact, from: dto)) { error in
             guard case RepairStateError.repairStateBehind(let version) = error else {
                 return XCTFail("Unexpected error: \(error)")
@@ -92,48 +92,48 @@ final class StoreRepositoryV2Tests: XCTestCase {
 
     func testDeleteContact_removesContactAndPhones() throws {
         let contact = repo.createContact(
-            from: ContactDTOV2(
+            from: V2ContactDTO(
                 firstName: "DeleteMe",
-                phoneNumbers: [PhoneNumberDTOV2(tag: .mobile, number: "999")]
+                phoneNumbers: [PhoneNumberDTO(tag: .mobile, number: "999")]
             )
         )
         try repo.save()
-        XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneNumberV2>()).count, 1)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneNumber>()).count, 1)
 
         repo.deleteContact(contact)
         try repo.save()
 
         let verify = ModelContext(container)
         verify.autosaveEnabled = false
-        XCTAssertTrue(try verify.fetch(FetchDescriptor<ContactV2>()).isEmpty)
-        XCTAssertTrue(try verify.fetch(FetchDescriptor<PhoneNumberV2>()).isEmpty)
+        XCTAssertTrue(try verify.fetch(FetchDescriptor<V2Contact>()).isEmpty)
+        XCTAssertTrue(try verify.fetch(FetchDescriptor<PhoneNumber>()).isEmpty)
     }
 
     func testDiscard_rollsBackUnsavedCreate() throws {
-        repo.createContact(from: ContactDTOV2(firstName: "Unsaved"))
+        repo.createContact(from: V2ContactDTO(firstName: "Unsaved"))
         XCTAssertTrue(context.hasChanges, "Insert should be pending before discard")
 
         repo.discard()
 
         XCTAssertFalse(context.hasChanges)
-        XCTAssertTrue(try context.fetch(FetchDescriptor<ContactV2>()).isEmpty)
+        XCTAssertTrue(try context.fetch(FetchDescriptor<V2Contact>()).isEmpty)
     }
 
     // MARK: - Phone numbers
 
     func testUpdatePhoneNumberList_updatesRemovesAndAdds() throws {
-        let keep = PhoneNumberDTOV2(tag: .mobile, number: "111", isPrimary: true)
-        let remove = PhoneNumberDTOV2(tag: .home, number: "222")
-        let dto = ContactDTOV2(firstName: "Alan", phoneNumbers: [keep, remove])
+        let keep = PhoneNumberDTO(tag: .mobile, number: "111", isPrimary: true)
+        let remove = PhoneNumberDTO(tag: .home, number: "222")
+        let dto = V2ContactDTO(firstName: "Alan", phoneNumbers: [keep, remove])
 
         let contact = repo.createContact(from: dto)
         try repo.save()
 
         var keepUpdated = try XCTUnwrap(contact.phoneNumbers?.first { $0.number == "111" }?.asDTO)
         keepUpdated.number = "111-updated"
-        let add = PhoneNumberDTOV2(tag: .work, number: "333")
+        let add = PhoneNumberDTO(tag: .work, number: "333")
 
-        let updateDTO = ContactDTOV2(
+        let updateDTO = V2ContactDTO(
             firstName: "Alan",
             lastName: "Turing",
             phoneNumbers: [keepUpdated, add]
@@ -150,11 +150,11 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testAddPhoneNumberDTO_appendsToContact() throws {
-        let contact = repo.createContact(from: ContactDTOV2(firstName: "AddPhone"))
+        let contact = repo.createContact(from: V2ContactDTO(firstName: "AddPhone"))
         try repo.save()
 
         try repo.addPhoneNumberDTO(
-            PhoneNumberDTOV2(tag: .school, number: "444", isPrimary: true),
+            PhoneNumberDTO(tag: .school, number: "444", isPrimary: true),
             to: contact
         )
         try repo.save()
@@ -166,12 +166,12 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testAddPhoneNumberDTO_whenRepairBehind_throws() throws {
-        let contact = ContactV2(repairVersion: 1, firstName: "Behind")
+        let contact = V2Contact(repairVersion: 1, firstName: "Behind")
         context.insert(contact)
         try repo.save()
 
         XCTAssertThrowsError(
-            try repo.addPhoneNumberDTO(PhoneNumberDTOV2(tag: .mobile, number: "1"), to: contact)
+            try repo.addPhoneNumberDTO(PhoneNumberDTO(tag: .mobile, number: "1"), to: contact)
         ) { error in
             guard case RepairStateError.repairStateBehind = error else {
                 return XCTFail("Unexpected error: \(error)")
@@ -182,9 +182,9 @@ final class StoreRepositoryV2Tests: XCTestCase {
 
     func testUpdatePhoneNumber_updatesFields() throws {
         let contact = repo.createContact(
-            from: ContactDTOV2(
+            from: V2ContactDTO(
                 firstName: "Phone",
-                phoneNumbers: [PhoneNumberDTOV2(tag: .home, number: "old")]
+                phoneNumbers: [PhoneNumberDTO(tag: .home, number: "old")]
             )
         )
         try repo.save()
@@ -204,11 +204,11 @@ final class StoreRepositoryV2Tests: XCTestCase {
 
     func testRemovePhoneNumber_deletesFromContactAndStore() throws {
         let contact = repo.createContact(
-            from: ContactDTOV2(
+            from: V2ContactDTO(
                 firstName: "Remove",
                 phoneNumbers: [
-                    PhoneNumberDTOV2(tag: .mobile, number: "keep", isPrimary: true),
-                    PhoneNumberDTOV2(tag: .home, number: "drop")
+                    PhoneNumberDTO(tag: .mobile, number: "keep", isPrimary: true),
+                    PhoneNumberDTO(tag: .home, number: "drop")
                 ]
             )
         )
@@ -221,12 +221,12 @@ final class StoreRepositoryV2Tests: XCTestCase {
 
         XCTAssertEqual(contact.phoneNumbers?.count, 1)
         XCTAssertEqual(contact.phoneNumbers?.first?.number, "keep")
-        XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneNumberV2>()).count, 1)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneNumber>()).count, 1)
     }
 
     func testRemovePhoneNumber_whenRepairBehind_throws() throws {
-        let contact = ContactV2(repairVersion: 1, firstName: "Behind")
-        let phone = PhoneNumberV2(from: PhoneNumberDTOV2(tag: .mobile, number: "1"))
+        let contact = V2Contact(repairVersion: 1, firstName: "Behind")
+        let phone = PhoneNumber(from: PhoneNumberDTO(tag: .mobile, number: "1"))
         context.insert(contact)
         context.insert(phone)
         contact.phoneNumbers = [phone]
@@ -241,13 +241,13 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testUpdatePhoneNumberList_whenRepairBehind_throws() throws {
-        let contact = ContactV2(repairVersion: 1, firstName: "Behind")
+        let contact = V2Contact(repairVersion: 1, firstName: "Behind")
         context.insert(contact)
         try repo.save()
 
         XCTAssertThrowsError(
             try repo.updatePhoneNumberList(
-                [PhoneNumberDTOV2(tag: .mobile, number: "1")],
+                [PhoneNumberDTO(tag: .mobile, number: "1")],
                 on: contact
             )
         ) { error in
@@ -258,8 +258,8 @@ final class StoreRepositoryV2Tests: XCTestCase {
     }
 
     func testIsUpToDateOnRepair() {
-        let current = ContactV2(repairVersion: 2)
-        let behind = ContactV2(repairVersion: 1)
+        let current = V2Contact(repairVersion: 2)
+        let behind = V2Contact(repairVersion: 1)
         XCTAssertTrue(repo.isUpToDateOnRepair(current))
         XCTAssertFalse(repo.isUpToDateOnRepair(behind))
     }

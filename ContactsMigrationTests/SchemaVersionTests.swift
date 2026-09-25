@@ -9,17 +9,17 @@ import XCTest
 
 final class SchemaVersionTests: XCTestCase {
     func testMigrationPlanV2_latestSchema_matchesPostMigrationCurrentVersion() {
-        let identifiers = MigrationPlanV2.schemas.map { $0.versionIdentifier }
+        let identifiers = V2MigrationPlan.schemas.map { $0.versionIdentifier }
         XCTAssertEqual(identifiers, [
-            SchemaV1.versionIdentifier,
-            SchemaV2.versionIdentifier
+            V1Schema.versionIdentifier,
+            V2Schema.versionIdentifier
         ])
-        XCTAssertEqual(SchemaV2.versionIdentifier, Schema.Version(2, 0, 0))
+        XCTAssertEqual(V2Schema.versionIdentifier, Schema.Version(2, 0, 0))
         XCTAssertEqual(PostMigration.currentVersion, 2)
     }
 
     func testMigrationPlanV2_stages_doNotSkipVersions() {
-        XCTAssertEqual(MigrationPlanV2.schemas.count, 2)
-        XCTAssertEqual(MigrationPlanV2.stages.count, MigrationPlanV2.schemas.count - 1)
+        XCTAssertEqual(V2MigrationPlan.schemas.count, 2)
+        XCTAssertEqual(V2MigrationPlan.stages.count, V2MigrationPlan.schemas.count - 1)
     }
 }

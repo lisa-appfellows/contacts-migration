@@ -1,5 +1,5 @@
 //
-//  StoreRepositoryV2.swift
+//  V2StoreRepository.swift
 //  ContactsMigration
 //
 //  Created by Lisa Fellows on 2026-09-22.
@@ -19,7 +19,7 @@ enum RepairStateError: Error, LocalizedError {
 }
 
 @MainActor
-final class StoreRepositoryV2: StoreRepository {
+final class V2StoreRepository: StoreRepository {
     let context: ModelContext
     init(context: ModelContext) {
         self.context = context
@@ -30,12 +30,12 @@ final class StoreRepositoryV2: StoreRepository {
     }
 
     @discardableResult
-    func createContact(from dto: ContactDTOV2) -> ContactV2 {
-        let newModel = SchemaV2.Contact(from: dto)
+    func createContact(from dto: V2ContactDTO) -> V2Contact {
+        let newModel = V2Schema.Contact(from: dto)
         context.insert(newModel)
 
         for phDto in dto.phoneNumbers {
-            let newPhModel = SchemaV2.PhoneNumber(from: phDto)
+            let newPhModel = V2Schema.PhoneNumber(from: phDto)
             context.insert(newPhModel)
             newModel.phoneNumbers?.append(newPhModel)
         }
@@ -43,7 +43,7 @@ final class StoreRepositoryV2: StoreRepository {
         return newModel
     }
 
-    func updateContact(_ model: ContactV2, from dto: ContactDTOV2) throws {
+    func updateContact(_ model: V2Contact, from dto: V2ContactDTO) throws {
         guard isUpToDateOnRepair(model) else {
             throw RepairStateError.repairStateBehind(version: model.repairVersion)
         }
@@ -52,7 +52,7 @@ final class StoreRepositoryV2: StoreRepository {
         try updatePhoneNumberList(dto.phoneNumbers, on: model)
     }
 
-    func deleteContact(_ model: ContactV2) {
+    func deleteContact(_ model: V2Contact) {
         for phone in model.phoneNumbers ?? [] {
             context.delete(phone)
         }
@@ -61,13 +61,13 @@ final class StoreRepositoryV2: StoreRepository {
     }
 
     @discardableResult
-    func createPhoneNumber(from dto: PhoneNumberDTOV2) -> PhoneNumberV2 {
-        let newModel = PhoneNumberV2(from: dto)
+    func createPhoneNumber(from dto: PhoneNumberDTO) -> PhoneNumber {
+        let newModel = PhoneNumber(from: dto)
         context.insert(newModel)
         return newModel
     }
 
-    func addPhoneNumberDTO(_ phDto: PhoneNumberDTOV2, to contactModel: ContactV2) throws {
+    func addPhoneNumberDTO(_ phDto: PhoneNumberDTO, to contactModel: V2Contact) throws {
         guard isUpToDateOnRepair(contactModel) else {
             throw RepairStateError.repairStateBehind(version: contactModel.repairVersion)
         }
@@ -76,11 +76,11 @@ final class StoreRepositoryV2: StoreRepository {
         contactModel.phoneNumbers?.append(newPhModel)
     }
 
-    func updatePhoneNumber(_ model: PhoneNumberV2, from dto: PhoneNumberDTOV2) {
+    func updatePhoneNumber(_ model: PhoneNumber, from dto: PhoneNumberDTO) {
         model.update(from: dto)
     }
 
-    func updatePhoneNumberList(_ dtoList: [PhoneNumberDTOV2], on contactModel: ContactV2) throws {
+    func updatePhoneNumberList(_ dtoList: [PhoneNumberDTO], on contactModel: V2Contact) throws {
         guard isUpToDateOnRepair(contactModel) else {
             throw RepairStateError.repairStateBehind(version: contactModel.repairVersion)
         }
@@ -111,7 +111,7 @@ final class StoreRepositoryV2: StoreRepository {
         }
     }
 
-    func removePhoneNumber(_ phModel: PhoneNumberV2, at index: Int, from contactModel: ContactV2) throws {
+    func removePhoneNumber(_ phModel: PhoneNumber, at index: Int, from contactModel: V2Contact) throws {
         guard isUpToDateOnRepair(contactModel) else {
             throw RepairStateError.repairStateBehind(version: contactModel.repairVersion)
         }

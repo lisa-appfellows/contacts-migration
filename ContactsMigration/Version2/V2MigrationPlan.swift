@@ -1,5 +1,5 @@
 //
-//  MigrationPlanV2.swift
+//  V2MigrationPlan.swift
 //  ContactsMigration
 //
 //  Created by Lisa Fellows on 2026-09-21.
@@ -8,12 +8,12 @@
 import Foundation
 import SwiftData
 
-enum MigrationPlanV2: SchemaMigrationPlan {
+enum V2MigrationPlan: SchemaMigrationPlan {
     static let schemas: [VersionedSchema.Type] = [
-        SchemaV1.self, SchemaV2.self
+        V1Schema.self, V2Schema.self
     ]
 
     static let stages: [MigrationStage] = [
-        .lightweight(fromVersion: SchemaV1.self, toVersion: SchemaV2.self)
+        .lightweight(fromVersion: V1Schema.self, toVersion: V2Schema.self)
     ]
 }

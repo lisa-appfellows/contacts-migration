@@ -13,7 +13,7 @@ final class PostMigrationTests: XCTestCase {
         let container = try TestContainers.v2()
         let context = ModelContext(container)
 
-        let contact = ContactV2(repairVersion: 1, firstName: "Migrate")
+        let contact = V2Contact(repairVersion: 1, firstName: "Migrate")
         contact.phoneNumber = "555-9999"
         contact.phoneNumbers = []
         context.insert(contact)
@@ -23,7 +23,7 @@ final class PostMigrationTests: XCTestCase {
         try await migration.runIfNeeded()
 
         let verifyContext = ModelContext(container)
-        let fetched = try verifyContext.fetch(FetchDescriptor<ContactV2>())
+        let fetched = try verifyContext.fetch(FetchDescriptor<V2Contact>())
         let updated = try XCTUnwrap(fetched.first)
 
         XCTAssertNil(updated.phoneNumber)
@@ -39,7 +39,7 @@ final class PostMigrationTests: XCTestCase {
         let container = try TestContainers.v2()
         let context = ModelContext(container)
 
-        let contact = ContactV2(repairVersion: 1, firstName: "NoPhone")
+        let contact = V2Contact(repairVersion: 1, firstName: "NoPhone")
         contact.phoneNumber = nil
         contact.phoneNumbers = []
         context.insert(contact)
@@ -49,7 +49,7 @@ final class PostMigrationTests: XCTestCase {
         try await migration.runIfNeeded()
 
         let verifyContext = ModelContext(container)
-        let fetched = try verifyContext.fetch(FetchDescriptor<ContactV2>())
+        let fetched = try verifyContext.fetch(FetchDescriptor<V2Contact>())
         let updated = try XCTUnwrap(fetched.first)
 
         XCTAssertEqual(updated.repairVersion, 2)

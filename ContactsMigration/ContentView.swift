@@ -10,21 +10,26 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(StoreService.self) private var storeService
-
+    
     var body: some View {
-        NavigationStack {
-            switch storeService.loadingState {
-            case .loading, .v2Migrating:
-                ProgressView()
-            case .containerFailure:
-                Text("Store unavailable")
-            case .v1Ready(let container, _):
-                Text("Hello")
-                    .modelContainer(container)
-            case .v2Ready(let container), .v2NeedsRepair(let container):
-                Text("Hello")
-                    .modelContainer(container)
-            }
+        switch storeService.loadingState {
+        case .loading, .v2Migrating:
+            ContainerLoadingView()
+            
+        case .containerFailure:
+            ContainerFailureView()
+            
+        case .v1Ready(let container, let event):
+            V1ContainerView(event: event)
+                .modelContainer(container)
+            
+        case .v2Ready(let container):
+            V2ContainerView(needsRepairs: false)
+                .modelContainer(container)
+            
+        case .v2NeedsRepair(let container):
+            V2ContainerView(needsRepairs: true)
+                .modelContainer(container)
         }
     }
 }

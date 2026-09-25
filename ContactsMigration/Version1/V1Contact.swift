@@ -1,5 +1,5 @@
 //
-//  ContactV1.swift
+//  V1Contact.swift
 //  ContactsMigration
 //
 //  Created by Lisa Fellows on 2026-09-22.
@@ -8,11 +8,11 @@
 import Foundation
 import SwiftData
 
-typealias ContactV1 = SchemaV1.Contact
+typealias V1Contact = V1Schema.Contact
 
-extension SchemaV1 {
+extension V1Schema {
     @Model
-    final class Contact: RepairableModel {
+    final class Contact: RepairableModel, ContactPresentable {
         var stableId: String = UUID().uuidString
         var repairVersion: Int = 1
         var firstName: String?
@@ -23,7 +23,7 @@ extension SchemaV1 {
         var birthday: Date?
         var notes: String?
 
-        var asDTO: ContactDTOV1 { .init(from: self) }
+        var asDTO: V1ContactDTO { .init(from: self) }
 
         init(
             stableId: String = UUID().uuidString,
@@ -47,7 +47,7 @@ extension SchemaV1 {
             self.notes = notes
         }
 
-        convenience init(from dto: ContactDTOV1) {
+        convenience init(from dto: V1ContactDTO) {
             self.init(
                 stableId: dto.stableId,
                 firstName: dto.firstName,
@@ -60,7 +60,7 @@ extension SchemaV1 {
             )
         }
 
-        func update(from dto: ContactDTOV1) {
+        func update(from dto: V1ContactDTO) {
             if firstName != dto.firstName { firstName = dto.firstName }
             if lastName != dto.lastName { lastName = dto.lastName }
             if company != dto.company { company = dto.company }

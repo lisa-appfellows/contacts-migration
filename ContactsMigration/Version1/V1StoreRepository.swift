@@ -1,5 +1,5 @@
 //
-//  StoreRepositoryV1.swift
+//  V1StoreRepository.swift
 //  ContactsMigration
 //
 //  Created by Lisa Fellows on 2026-09-22.
@@ -9,20 +9,20 @@ import Foundation
 import SwiftData
 
 @MainActor
-final class StoreRepositoryV1: StoreRepository {
+final class V1StoreRepository: StoreRepository {
     let context: ModelContext
     init(context: ModelContext) {
         self.context = context
     }
 
     @discardableResult
-    func createContact(from dto: ContactDTOV1) -> ContactV1 {
-        let newModel = ContactV1(from: dto)
+    func createContact(from dto: V1ContactDTO) -> V1Contact {
+        let newModel = V1Contact(from: dto)
         context.insert(newModel)
         return newModel
     }
 
-    func updateContact(_ model: ContactV1, from dto: ContactDTOV1) {
+    func updateContact(_ model: V1Contact, from dto: V1ContactDTO) {
         model.update(from: dto)
     }
 }
