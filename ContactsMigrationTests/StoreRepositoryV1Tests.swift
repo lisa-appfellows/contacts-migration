@@ -11,17 +11,17 @@ import XCTest
 final class StoreRepositoryV1Tests: XCTestCase {
     private var container: ModelContainer!
     private var context: ModelContext!
-    private var repo: StoreRepositoryV1!
+    private var repo: V1StoreRepository!
 
     override func setUpWithError() throws {
         container = try TestContainers.v1()
         context = ModelContext(container)
         context.autosaveEnabled = false
-        repo = StoreRepositoryV1(context: context)
+        repo = V1StoreRepository(context: context)
     }
 
     func testCreateContact_saveAndFetch_matchesDTO() throws {
-        let dto = ContactDTOV1(
+        let dto = V1ContactDTO(
             firstName: "Ada",
             lastName: "Lovelace",
             company: "Analytical",
@@ -33,7 +33,7 @@ final class StoreRepositoryV1Tests: XCTestCase {
         let created = repo.createContact(from: dto)
         try repo.save()
 
-        let fetched = try context.fetch(FetchDescriptor<ContactV1>())
+        let fetched = try context.fetch(FetchDescriptor<V1Contact>())
         XCTAssertEqual(fetched.count, 1)
 
         let contact = try XCTUnwrap(fetched.first)
@@ -49,10 +49,10 @@ final class StoreRepositoryV1Tests: XCTestCase {
     }
 
     func testUpdateContact_persistsFieldChanges() throws {
-        let contact = repo.createContact(from: ContactDTOV1(firstName: "Ada", phoneNumber: "111"))
+        let contact = repo.createContact(from: V1ContactDTO(firstName: "Ada", phoneNumber: "111"))
         try repo.save()
 
-        let update = ContactDTOV1(
+        let update = V1ContactDTO(
             firstName: "Augusta",
             lastName: "King",
             company: "Royal",
@@ -63,7 +63,7 @@ final class StoreRepositoryV1Tests: XCTestCase {
         repo.updateContact(contact, from: update)
         try repo.save()
 
-        let fetched = try XCTUnwrap(try context.fetch(FetchDescriptor<ContactV1>()).first)
+        let fetched = try XCTUnwrap(try context.fetch(FetchDescriptor<V1Contact>()).first)
         XCTAssertEqual(fetched.firstName, "Augusta")
         XCTAssertEqual(fetched.lastName, "King")
         XCTAssertEqual(fetched.company, "Royal")
@@ -74,23 +74,23 @@ final class StoreRepositoryV1Tests: XCTestCase {
     }
 
     func testDeleteContact_removesFromStore() throws {
-        let contact = repo.createContact(from: ContactDTOV1(firstName: "Temp"))
+        let contact = repo.createContact(from: V1ContactDTO(firstName: "Temp"))
         try repo.save()
-        XCTAssertEqual(try context.fetch(FetchDescriptor<ContactV1>()).count, 1)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<V1Contact>()).count, 1)
 
         repo.delete(contact)
         try repo.save()
 
-        XCTAssertTrue(try context.fetch(FetchDescriptor<ContactV1>()).isEmpty)
+        XCTAssertTrue(try context.fetch(FetchDescriptor<V1Contact>()).isEmpty)
     }
 
     func testDiscard_rollsBackUnsavedCreate() throws {
-        repo.createContact(from: ContactDTOV1(firstName: "Unsaved"))
+        repo.createContact(from: V1ContactDTO(firstName: "Unsaved"))
         XCTAssertTrue(context.hasChanges, "Insert should be pending before discard")
 
         repo.discard()
 
         XCTAssertFalse(context.hasChanges)
-        XCTAssertTrue(try context.fetch(FetchDescriptor<ContactV1>()).isEmpty)
+        XCTAssertTrue(try context.fetch(FetchDescriptor<V1Contact>()).isEmpty)
     }
 }

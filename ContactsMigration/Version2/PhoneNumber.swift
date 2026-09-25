@@ -1,5 +1,5 @@
 //
-//  PhoneNumberV2.swift
+//  PhoneNumber.swift
 //  ContactsMigration
 //
 //  Created by Lisa Fellows on 2026-09-22.
@@ -8,9 +8,9 @@
 import Foundation
 import SwiftData
 
-typealias PhoneNumberV2 = SchemaV2.PhoneNumber
+typealias PhoneNumber = V2Schema.PhoneNumber
 
-extension SchemaV2 {
+extension V2Schema {
     @Model
     final class PhoneNumber {
         var id: String = UUID().uuidString
@@ -27,7 +27,7 @@ extension SchemaV2 {
             rawIsPrimary ?? false
         }
 
-        var asDTO: PhoneNumberDTOV2 {
+        var asDTO: PhoneNumberDTO {
             .init(from: self)
         }
     
@@ -42,14 +42,14 @@ extension SchemaV2 {
             self.rawIsPrimary = rawIsPrimary
         }
 
-        init(from dto: PhoneNumberDTOV2) {
+        init(from dto: PhoneNumberDTO) {
             self.id = dto.id
             self.rawTag = dto.tag.rawValue
             self.number = dto.number
             self.rawIsPrimary = dto.isPrimary
         }
 
-        func update(from dto: PhoneNumberDTOV2) {
+        func update(from dto: PhoneNumberDTO) {
             if tag != dto.tag { rawTag = dto.tag.rawValue }
             if number != dto.number { number = dto.number }
             if isPrimary != dto.isPrimary { rawIsPrimary = dto.isPrimary }

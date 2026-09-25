@@ -46,12 +46,12 @@ final class StoreService {
     }
 
     @MainActor 
-    func storeRepoV1(_ context: ModelContext) -> StoreRepositoryV1 {
+    func storeRepoV1(_ context: ModelContext) -> V1StoreRepository {
         .init(context: context)
     }
 
     @MainActor
-    func storeRepoV2(_ context: ModelContext) -> StoreRepositoryV2 {
+    func storeRepoV2(_ context: ModelContext) -> V2StoreRepository {
         .init(context: context)
     }
 
@@ -115,16 +115,16 @@ final class StoreService {
 extension StoreService {
     static func containerV1(inMemoryOnly: Bool) throws -> ModelContainer {
         try ModelContainer(
-            for: Schema(versionedSchema: SchemaV1.self),
-            migrationPlan: MigrationPlanV1.self,
+            for: Schema(versionedSchema: V1Schema.self),
+            migrationPlan: V1MigrationPlan.self,
             configurations: .init(isStoredInMemoryOnly: inMemoryOnly)
         )
     }
 
     static func containerV2(inMemoryOnly: Bool) throws -> ModelContainer {
         try ModelContainer(
-            for: Schema(versionedSchema: SchemaV2.self),
-            migrationPlan: MigrationPlanV2.self,
+            for: Schema(versionedSchema: V2Schema.self),
+            migrationPlan: V2MigrationPlan.self,
             configurations: .init(isStoredInMemoryOnly: inMemoryOnly)
         )
     }
