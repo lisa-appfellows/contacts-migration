@@ -1,18 +1,13 @@
 //
 //  TestContainers.swift
-//  ContactsMigrationTests
+//  Version1Tests
 //
 
 import SwiftData
-import Version1
-import Version2
+@testable import Version1
 
 enum TestContainers {
     static func v1() throws -> ModelContainer {
         try Version1.container(inMemoryOnly: true)
-    }
-
-    static func v2() throws -> ModelContainer {
-        try Version2.container(inMemoryOnly: true)
     }
 }

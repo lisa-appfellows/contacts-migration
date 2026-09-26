@@ -7,57 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043A656730671AEB00C80AD4 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 043A656630671AEB00C80AD4 /* Core */; };
+		043A656930671AEE00C80AD4 /* CoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = 043A656830671AEE00C80AD4 /* CoreUI */; };
+		043A656D3067333B00C80AD4 /* Version1 in Frameworks */ = {isa = PBXBuildFile; productRef = 043A656C3067333B00C80AD4 /* Version1 */; };
+		043A656F3067333F00C80AD4 /* Version2 in Frameworks */ = {isa = PBXBuildFile; productRef = 043A656E3067333F00C80AD4 /* Version2 */; };
 		0440D5443061C1AF00BE4D30 /* ContactsMigrationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5433061C1AF00BE4D30 /* ContactsMigrationApp.swift */; };
 		0440D5463061C1AF00BE4D30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5453061C1AF00BE4D30 /* ContentView.swift */; };
 		0440D5483061C1B000BE4D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0440D5473061C1B000BE4D30 /* Assets.xcassets */; };
 		0440D54B3061C1B000BE4D30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0440D54A3061C1B000BE4D30 /* Preview Assets.xcassets */; };
 		0440D55F3061C1B000BE4D30 /* ContactsMigrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D55E3061C1B000BE4D30 /* ContactsMigrationUITests.swift */; };
 		0440D5613061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5603061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift */; };
-		0440D5783061CA0900BE4D30 /* PostMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5773061CA0900BE4D30 /* PostMigration.swift */; };
 		0440D59430620F9400BE4D30 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D59330620F9400BE4D30 /* StoreService.swift */; };
-		0440D59C306214C800BE4D30 /* V2MigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D59B306214C800BE4D30 /* V2MigrationPlan.swift */; };
-		0440D59E306214F100BE4D30 /* V2Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D59D306214F100BE4D30 /* V2Schema.swift */; };
-		0440D5A830621BA400BE4D30 /* StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5A730621BA400BE4D30 /* StoreRepository.swift */; };
-		0440D5AC3063329A00BE4D30 /* V2StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5AB3063329A00BE4D30 /* V2StoreRepository.swift */; };
-		0440D5AE306332BF00BE4D30 /* V1StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5AD306332BF00BE4D30 /* V1StoreRepository.swift */; };
-		0440D5B03063330100BE4D30 /* V1Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5AF3063330100BE4D30 /* V1Contact.swift */; };
-		0440D5B23063332A00BE4D30 /* V1ContactDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B13063332A00BE4D30 /* V1ContactDTO.swift */; };
-		0440D5B43063335100BE4D30 /* V2Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B33063335100BE4D30 /* V2Contact.swift */; };
-		0440D5B63063336800BE4D30 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B53063336800BE4D30 /* PhoneNumber.swift */; };
-		0440D5B83063337F00BE4D30 /* V2ContactDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B73063337F00BE4D30 /* V2ContactDTO.swift */; };
-		0440D5BA3063339300BE4D30 /* PhoneNumberDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5B93063339300BE4D30 /* PhoneNumberDTO.swift */; };
-		0440D5BC3063340500BE4D30 /* V1MigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5BB3063340500BE4D30 /* V1MigrationPlan.swift */; };
-		0440D5BE3063343B00BE4D30 /* V1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5BD3063343B00BE4D30 /* V1Schema.swift */; };
-		0440D5C6306363F700BE4D30 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C5306363F700BE4D30 /* AppLogger.swift */; };
 		0440D5C73063A00700BE4D30 /* TestContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C13063A00100BE4D30 /* TestContainers.swift */; };
-		0440D5C83063A00800BE4D30 /* StoreRepositoryV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C23063A00200BE4D30 /* StoreRepositoryV1Tests.swift */; };
-		0440D5C830648F0700BE4D30 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C730648F0700BE4D30 /* ContactListView.swift */; };
-		0440D5C93063A00900BE4D30 /* StoreRepositoryV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C33063A00300BE4D30 /* StoreRepositoryV2Tests.swift */; };
-		0440D5CA3063A00A00BE4D30 /* PostMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C43063A00400BE4D30 /* PostMigrationTests.swift */; };
-		0440D5CA30648FBE00BE4D30 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C930648FBE00BE4D30 /* Mocks.swift */; };
-		0440D5CB3063A00B00BE4D30 /* ContactDTOV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C53063A00500BE4D30 /* ContactDTOV2Tests.swift */; };
-		0440D5CC3063A00C00BE4D30 /* SchemaVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5C63063A00600BE4D30 /* SchemaVersionTests.swift */; };
-		0440D5CC3064A0C100BE4D30 /* ContactListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5CB3064A0C100BE4D30 /* ContactListModel.swift */; };
 		0440D5CE3063B00100BE4D30 /* StoreServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5CD3063B00100BE4D30 /* StoreServiceTests.swift */; };
-		0440D5CE3064A0D000BE4D30 /* ContactPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5CD3064A0D000BE4D30 /* ContactPresentationModel.swift */; };
-		0440D5D23064AAC200BE4D30 /* V1ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5D13064AAC200BE4D30 /* V1ContainerView.swift */; };
-		0440D5D43064AAC800BE4D30 /* V2ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5D33064AAC800BE4D30 /* V2ContainerView.swift */; };
-		0440D5D63064AB9F00BE4D30 /* ContainerFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5D53064AB9F00BE4D30 /* ContainerFailureView.swift */; };
-		0440D5D83064ABEE00BE4D30 /* ContainerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5D73064ABEE00BE4D30 /* ContainerLoadingView.swift */; };
-		0440D5DA3064AC3F00BE4D30 /* ContactListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5D93064AC3F00BE4D30 /* ContactListRow.swift */; };
-		0440D5DC3064ADE600BE4D30 /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5DB3064ADE600BE4D30 /* ShimmerModifier.swift */; };
-		0440D5E13065DF4300BE4D30 /* V1ContactEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5E03065DF4300BE4D30 /* V1ContactEditor.swift */; };
-		0440D5E33065DF4A00BE4D30 /* V2ContactEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5E23065DF4A00BE4D30 /* V2ContactEditor.swift */; };
-		0440D5E53066003C00BE4D30 /* ContactEditorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5E43066003C00BE4D30 /* ContactEditorComponents.swift */; };
-		0440D5E8306606B500BE4D30 /* V1ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5E7306606B500BE4D30 /* V1ContactDetailView.swift */; };
-		0440D5EA306606BD00BE4D30 /* V2ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5E9306606BD00BE4D30 /* V2ContactDetailView.swift */; };
-		0440D5EF3066D17500BE4D30 /* V1ContactVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5EE3066D17500BE4D30 /* V1ContactVM.swift */; };
-		0440D5F13066D19400BE4D30 /* V2ContactVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5F03066D19400BE4D30 /* V2ContactVM.swift */; };
-		0440D5F33066E2DD00BE4D30 /* LinearGradient+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5F23066E2DD00BE4D30 /* LinearGradient+Ext.swift */; };
-		0440D5F53066E36E00BE4D30 /* ContactDetailComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5F43066E36E00BE4D30 /* ContactDetailComponents.swift */; };
-		0440D5FB30670C0E00BE4D30 /* V1Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5FA30670C0E00BE4D30 /* V1Router.swift */; };
-		0440D5FE30670C4D00BE4D30 /* V2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5FD30670C4D00BE4D30 /* V2Router.swift */; };
-		0440D600306712AE00BE4D30 /* ContactUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440D5FF306712AE00BE4D30 /* ContactUnavailableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		043A656330671AB100C80AD4 /* Core */ = {isa = PBXFileReference; lastKnownFileType = text; path = Core; sourceTree = SOURCE_ROOT; };
+		043A656430671AD400C80AD4 /* CoreUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CoreUI; sourceTree = "<group>"; };
+		043A656A306725B400C80AD4 /* Version1 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Version1; sourceTree = "<group>"; };
+		043A656B306725CA00C80AD4 /* Version2 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Version2; sourceTree = "<group>"; };
 		0440D5403061C1AF00BE4D30 /* ContactsMigration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsMigration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0440D5433061C1AF00BE4D30 /* ContactsMigrationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMigrationApp.swift; sourceTree = "<group>"; };
 		0440D5453061C1AF00BE4D30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,51 +53,9 @@
 		0440D55A3061C1B000BE4D30 /* ContactsMigrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsMigrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0440D55E3061C1B000BE4D30 /* ContactsMigrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMigrationUITests.swift; sourceTree = "<group>"; };
 		0440D5603061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMigrationUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		0440D5773061CA0900BE4D30 /* PostMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMigration.swift; sourceTree = "<group>"; };
 		0440D59330620F9400BE4D30 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
-		0440D59B306214C800BE4D30 /* V2MigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2MigrationPlan.swift; sourceTree = "<group>"; };
-		0440D59D306214F100BE4D30 /* V2Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2Schema.swift; sourceTree = "<group>"; };
-		0440D5A730621BA400BE4D30 /* StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepository.swift; sourceTree = "<group>"; };
-		0440D5AB3063329A00BE4D30 /* V2StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2StoreRepository.swift; sourceTree = "<group>"; };
-		0440D5AD306332BF00BE4D30 /* V1StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1StoreRepository.swift; sourceTree = "<group>"; };
-		0440D5AF3063330100BE4D30 /* V1Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Contact.swift; sourceTree = "<group>"; };
-		0440D5B13063332A00BE4D30 /* V1ContactDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1ContactDTO.swift; sourceTree = "<group>"; };
-		0440D5B33063335100BE4D30 /* V2Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2Contact.swift; sourceTree = "<group>"; };
-		0440D5B53063336800BE4D30 /* PhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
-		0440D5B73063337F00BE4D30 /* V2ContactDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2ContactDTO.swift; sourceTree = "<group>"; };
-		0440D5B93063339300BE4D30 /* PhoneNumberDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberDTO.swift; sourceTree = "<group>"; };
-		0440D5BB3063340500BE4D30 /* V1MigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1MigrationPlan.swift; sourceTree = "<group>"; };
-		0440D5BD3063343B00BE4D30 /* V1Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Schema.swift; sourceTree = "<group>"; };
 		0440D5C13063A00100BE4D30 /* TestContainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestContainers.swift; sourceTree = "<group>"; };
-		0440D5C23063A00200BE4D30 /* StoreRepositoryV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepositoryV1Tests.swift; sourceTree = "<group>"; };
-		0440D5C33063A00300BE4D30 /* StoreRepositoryV2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepositoryV2Tests.swift; sourceTree = "<group>"; };
-		0440D5C43063A00400BE4D30 /* PostMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMigrationTests.swift; sourceTree = "<group>"; };
-		0440D5C5306363F700BE4D30 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
-		0440D5C53063A00500BE4D30 /* ContactDTOV2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDTOV2Tests.swift; sourceTree = "<group>"; };
-		0440D5C63063A00600BE4D30 /* SchemaVersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersionTests.swift; sourceTree = "<group>"; };
-		0440D5C730648F0700BE4D30 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
-		0440D5C930648FBE00BE4D30 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
-		0440D5CB3064A0C100BE4D30 /* ContactListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListModel.swift; sourceTree = "<group>"; };
 		0440D5CD3063B00100BE4D30 /* StoreServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceTests.swift; sourceTree = "<group>"; };
-		0440D5CD3064A0D000BE4D30 /* ContactPresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPresentationModel.swift; sourceTree = "<group>"; };
-		0440D5D13064AAC200BE4D30 /* V1ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1ContainerView.swift; sourceTree = "<group>"; };
-		0440D5D33064AAC800BE4D30 /* V2ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2ContainerView.swift; sourceTree = "<group>"; };
-		0440D5D53064AB9F00BE4D30 /* ContainerFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerFailureView.swift; sourceTree = "<group>"; };
-		0440D5D73064ABEE00BE4D30 /* ContainerLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerLoadingView.swift; sourceTree = "<group>"; };
-		0440D5D93064AC3F00BE4D30 /* ContactListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRow.swift; sourceTree = "<group>"; };
-		0440D5DB3064ADE600BE4D30 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
-		0440D5E03065DF4300BE4D30 /* V1ContactEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1ContactEditor.swift; sourceTree = "<group>"; };
-		0440D5E23065DF4A00BE4D30 /* V2ContactEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2ContactEditor.swift; sourceTree = "<group>"; };
-		0440D5E43066003C00BE4D30 /* ContactEditorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditorComponents.swift; sourceTree = "<group>"; };
-		0440D5E7306606B500BE4D30 /* V1ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1ContactDetailView.swift; sourceTree = "<group>"; };
-		0440D5E9306606BD00BE4D30 /* V2ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2ContactDetailView.swift; sourceTree = "<group>"; };
-		0440D5EE3066D17500BE4D30 /* V1ContactVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1ContactVM.swift; sourceTree = "<group>"; };
-		0440D5F03066D19400BE4D30 /* V2ContactVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2ContactVM.swift; sourceTree = "<group>"; };
-		0440D5F23066E2DD00BE4D30 /* LinearGradient+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinearGradient+Ext.swift"; sourceTree = "<group>"; };
-		0440D5F43066E36E00BE4D30 /* ContactDetailComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailComponents.swift; sourceTree = "<group>"; };
-		0440D5FA30670C0E00BE4D30 /* V1Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Router.swift; sourceTree = "<group>"; };
-		0440D5FD30670C4D00BE4D30 /* V2Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2Router.swift; sourceTree = "<group>"; };
-		0440D5FF306712AE00BE4D30 /* ContactUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUnavailableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +63,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043A656F3067333F00C80AD4 /* Version2 in Frameworks */,
+				043A656D3067333B00C80AD4 /* Version1 in Frameworks */,
+				043A656730671AEB00C80AD4 /* Core in Frameworks */,
+				043A656930671AEE00C80AD4 /* CoreUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,13 +87,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043A656530671AEB00C80AD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0440D5373061C1AE00BE4D30 = {
 			isa = PBXGroup;
 			children = (
 				0440D5423061C1AF00BE4D30 /* ContactsMigration */,
 				0440D5533061C1B000BE4D30 /* ContactsMigrationTests */,
 				0440D55D3061C1B000BE4D30 /* ContactsMigrationUITests */,
+				043A656330671AB100C80AD4 /* Core */,
+				043A656430671AD400C80AD4 /* CoreUI */,
+				043A656A306725B400C80AD4 /* Version1 */,
+				043A656B306725CA00C80AD4 /* Version2 */,
 				0440D5413061C1AF00BE4D30 /* Products */,
+				043A656530671AEB00C80AD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,17 +124,9 @@
 			children = (
 				0440D5433061C1AF00BE4D30 /* ContactsMigrationApp.swift */,
 				0440D5453061C1AF00BE4D30 /* ContentView.swift */,
-				0440D5D53064AB9F00BE4D30 /* ContainerFailureView.swift */,
-				0440D5D73064ABEE00BE4D30 /* ContainerLoadingView.swift */,
-				0440D5F930670BFD00BE4D30 /* Version1 */,
-				0440D5FC30670C3B00BE4D30 /* Version2 */,
-				0440D5CF3064AA3C00BE4D30 /* ContactListView */,
-				0440D5DF3065DF1100BE4D30 /* ContactEditor */,
-				0440D5E63066069C00BE4D30 /* ContactDetailView */,
-				0440D56D3061C74100BE4D30 /* Data */,
+				0440D59330620F9400BE4D30 /* StoreService.swift */,
+				0440D5473061C1B000BE4D30 /* Assets.xcassets */,
 				0440D5493061C1B000BE4D30 /* Preview Content */,
-				0440D5C3306363DC00BE4D30 /* Resources */,
-				0440D5C4306363E900BE4D30 /* Utilities */,
 			);
 			path = ContactsMigration;
 			sourceTree = "<group>";
@@ -203,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				0440D54A3061C1B000BE4D30 /* Preview Assets.xcassets */,
-				0440D5C930648FBE00BE4D30 /* Mocks.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -212,11 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				0440D5C13063A00100BE4D30 /* TestContainers.swift */,
-				0440D5C23063A00200BE4D30 /* StoreRepositoryV1Tests.swift */,
-				0440D5C33063A00300BE4D30 /* StoreRepositoryV2Tests.swift */,
-				0440D5C43063A00400BE4D30 /* PostMigrationTests.swift */,
-				0440D5C53063A00500BE4D30 /* ContactDTOV2Tests.swift */,
-				0440D5C63063A00600BE4D30 /* SchemaVersionTests.swift */,
 				0440D5CD3063B00100BE4D30 /* StoreServiceTests.swift */,
 			);
 			path = ContactsMigrationTests;
@@ -229,98 +155,6 @@
 				0440D5603061C1B000BE4D30 /* ContactsMigrationUITestsLaunchTests.swift */,
 			);
 			path = ContactsMigrationUITests;
-			sourceTree = "<group>";
-		};
-		0440D56D3061C74100BE4D30 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5773061CA0900BE4D30 /* PostMigration.swift */,
-				0440D5A730621BA400BE4D30 /* StoreRepository.swift */,
-				0440D59330620F9400BE4D30 /* StoreService.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		0440D5C3306363DC00BE4D30 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5473061C1B000BE4D30 /* Assets.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		0440D5C4306363E900BE4D30 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5C5306363F700BE4D30 /* AppLogger.swift */,
-				0440D5F23066E2DD00BE4D30 /* LinearGradient+Ext.swift */,
-				0440D5DB3064ADE600BE4D30 /* ShimmerModifier.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		0440D5CF3064AA3C00BE4D30 /* ContactListView */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5C730648F0700BE4D30 /* ContactListView.swift */,
-				0440D5D93064AC3F00BE4D30 /* ContactListRow.swift */,
-				0440D5FF306712AE00BE4D30 /* ContactUnavailableView.swift */,
-				0440D5CB3064A0C100BE4D30 /* ContactListModel.swift */,
-				0440D5CD3064A0D000BE4D30 /* ContactPresentationModel.swift */,
-			);
-			path = ContactListView;
-			sourceTree = "<group>";
-		};
-		0440D5DF3065DF1100BE4D30 /* ContactEditor */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5E43066003C00BE4D30 /* ContactEditorComponents.swift */,
-			);
-			path = ContactEditor;
-			sourceTree = "<group>";
-		};
-		0440D5E63066069C00BE4D30 /* ContactDetailView */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5F43066E36E00BE4D30 /* ContactDetailComponents.swift */,
-			);
-			path = ContactDetailView;
-			sourceTree = "<group>";
-		};
-		0440D5F930670BFD00BE4D30 /* Version1 */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5D13064AAC200BE4D30 /* V1ContainerView.swift */,
-				0440D5FA30670C0E00BE4D30 /* V1Router.swift */,
-				0440D5EE3066D17500BE4D30 /* V1ContactVM.swift */,
-				0440D5E03065DF4300BE4D30 /* V1ContactEditor.swift */,
-				0440D5E7306606B500BE4D30 /* V1ContactDetailView.swift */,
-				0440D5BB3063340500BE4D30 /* V1MigrationPlan.swift */,
-				0440D5BD3063343B00BE4D30 /* V1Schema.swift */,
-				0440D5AD306332BF00BE4D30 /* V1StoreRepository.swift */,
-				0440D5AF3063330100BE4D30 /* V1Contact.swift */,
-				0440D5B13063332A00BE4D30 /* V1ContactDTO.swift */,
-			);
-			path = Version1;
-			sourceTree = "<group>";
-		};
-		0440D5FC30670C3B00BE4D30 /* Version2 */ = {
-			isa = PBXGroup;
-			children = (
-				0440D5D33064AAC800BE4D30 /* V2ContainerView.swift */,
-				0440D5FD30670C4D00BE4D30 /* V2Router.swift */,
-				0440D5F03066D19400BE4D30 /* V2ContactVM.swift */,
-				0440D5E23065DF4A00BE4D30 /* V2ContactEditor.swift */,
-				0440D5E9306606BD00BE4D30 /* V2ContactDetailView.swift */,
-				0440D59B306214C800BE4D30 /* V2MigrationPlan.swift */,
-				0440D59D306214F100BE4D30 /* V2Schema.swift */,
-				0440D5AB3063329A00BE4D30 /* V2StoreRepository.swift */,
-				0440D5B33063335100BE4D30 /* V2Contact.swift */,
-				0440D5B73063337F00BE4D30 /* V2ContactDTO.swift */,
-				0440D5B53063336800BE4D30 /* PhoneNumber.swift */,
-				0440D5B93063339300BE4D30 /* PhoneNumberDTO.swift */,
-			);
-			path = Version2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +173,12 @@
 			dependencies = (
 			);
 			name = ContactsMigration;
+			packageProductDependencies = (
+				043A656630671AEB00C80AD4 /* Core */,
+				043A656830671AEE00C80AD4 /* CoreUI */,
+				043A656C3067333B00C80AD4 /* Version1 */,
+				043A656E3067333F00C80AD4 /* Version2 */,
+			);
 			productName = ContactsMigration;
 			productReference = 0440D5403061C1AF00BE4D30 /* ContactsMigration.app */;
 			productType = "com.apple.product-type.application";
@@ -454,45 +294,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0440D59430620F9400BE4D30 /* StoreService.swift in Sources */,
-				0440D5783061CA0900BE4D30 /* PostMigration.swift in Sources */,
-				0440D5B03063330100BE4D30 /* V1Contact.swift in Sources */,
-				0440D5EF3066D17500BE4D30 /* V1ContactVM.swift in Sources */,
-				0440D59E306214F100BE4D30 /* V2Schema.swift in Sources */,
 				0440D5463061C1AF00BE4D30 /* ContentView.swift in Sources */,
-				0440D5F53066E36E00BE4D30 /* ContactDetailComponents.swift in Sources */,
-				0440D5CC3064A0C100BE4D30 /* ContactListModel.swift in Sources */,
-				0440D5AC3063329A00BE4D30 /* V2StoreRepository.swift in Sources */,
-				0440D5BA3063339300BE4D30 /* PhoneNumberDTO.swift in Sources */,
-				0440D600306712AE00BE4D30 /* ContactUnavailableView.swift in Sources */,
-				0440D5DC3064ADE600BE4D30 /* ShimmerModifier.swift in Sources */,
-				0440D5C830648F0700BE4D30 /* ContactListView.swift in Sources */,
-				0440D5FE30670C4D00BE4D30 /* V2Router.swift in Sources */,
-				0440D5AE306332BF00BE4D30 /* V1StoreRepository.swift in Sources */,
-				0440D5F33066E2DD00BE4D30 /* LinearGradient+Ext.swift in Sources */,
-				0440D5E33065DF4A00BE4D30 /* V2ContactEditor.swift in Sources */,
-				0440D5FB30670C0E00BE4D30 /* V1Router.swift in Sources */,
-				0440D5CE3064A0D000BE4D30 /* ContactPresentationModel.swift in Sources */,
-				0440D5D23064AAC200BE4D30 /* V1ContainerView.swift in Sources */,
-				0440D5A830621BA400BE4D30 /* StoreRepository.swift in Sources */,
-				0440D5B63063336800BE4D30 /* PhoneNumber.swift in Sources */,
 				0440D5443061C1AF00BE4D30 /* ContactsMigrationApp.swift in Sources */,
-				0440D5B23063332A00BE4D30 /* V1ContactDTO.swift in Sources */,
-				0440D5BC3063340500BE4D30 /* V1MigrationPlan.swift in Sources */,
-				0440D5DA3064AC3F00BE4D30 /* ContactListRow.swift in Sources */,
-				0440D5E53066003C00BE4D30 /* ContactEditorComponents.swift in Sources */,
-				0440D5E8306606B500BE4D30 /* V1ContactDetailView.swift in Sources */,
-				0440D5B43063335100BE4D30 /* V2Contact.swift in Sources */,
-				0440D5EA306606BD00BE4D30 /* V2ContactDetailView.swift in Sources */,
-				0440D5BE3063343B00BE4D30 /* V1Schema.swift in Sources */,
-				0440D5E13065DF4300BE4D30 /* V1ContactEditor.swift in Sources */,
-				0440D5C6306363F700BE4D30 /* AppLogger.swift in Sources */,
-				0440D5B83063337F00BE4D30 /* V2ContactDTO.swift in Sources */,
-				0440D5D63064AB9F00BE4D30 /* ContainerFailureView.swift in Sources */,
-				0440D59C306214C800BE4D30 /* V2MigrationPlan.swift in Sources */,
-				0440D5D83064ABEE00BE4D30 /* ContainerLoadingView.swift in Sources */,
-				0440D5CA30648FBE00BE4D30 /* Mocks.swift in Sources */,
-				0440D5D43064AAC800BE4D30 /* V2ContainerView.swift in Sources */,
-				0440D5F13066D19400BE4D30 /* V2ContactVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,11 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0440D5C73063A00700BE4D30 /* TestContainers.swift in Sources */,
-				0440D5C83063A00800BE4D30 /* StoreRepositoryV1Tests.swift in Sources */,
-				0440D5C93063A00900BE4D30 /* StoreRepositoryV2Tests.swift in Sources */,
-				0440D5CA3063A00A00BE4D30 /* PostMigrationTests.swift in Sources */,
-				0440D5CB3063A00B00BE4D30 /* ContactDTOV2Tests.swift in Sources */,
-				0440D5CC3063A00C00BE4D30 /* SchemaVersionTests.swift in Sources */,
 				0440D5CE3063B00100BE4D30 /* StoreServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,6 +626,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		043A656630671AEB00C80AD4 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		043A656830671AEE00C80AD4 /* CoreUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreUI;
+		};
+		043A656C3067333B00C80AD4 /* Version1 */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Version1;
+		};
+		043A656E3067333F00C80AD4 /* Version2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Version2;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0440D5383061C1AE00BE4D30 /* Project object */;
 }

@@ -43,7 +43,8 @@ jobs:
           echo "== Available devices =="
           xcrun simctl list devices available
 
-      - name: Build and run unit tests
+      - name: Resolve simulator
+        id: sim
         run: |
           # Prefer simctl over xcodebuild -showdestinations: the latter often
           # only lists placeholders until runtimes/caches are ready.
@@ -60,19 +61,42 @@ jobs:
           fi
 
           echo "Using simulator UDID: $UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
 
+      - name: App unit tests
+        run: |
+          mkdir -p TestResults
           xcodebuild test \
             -project ContactsMigration.xcodeproj \
             -scheme ContactsMigration \
-            -destination "platform=iOS Simulator,id=$UDID" \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
             -only-testing:ContactsMigrationTests \
-            -resultBundlePath TestResults.xcresult \
+            -resultBundlePath TestResults/App.xcresult \
             CODE_SIGNING_ALLOWED=NO
+
+      - name: Package unit tests
+        run: |
+          mkdir -p TestResults
+          DEST="platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}"
+
+          for pkg in CoreUI Version1 Version2; do
+            echo "::group::Testing $pkg"
+            (
+              cd "$pkg"
+              xcodebuild test \
+                -scheme "$pkg" \
+                -destination "$DEST" \
+                -derivedDataPath "/tmp/${pkg}Derived" \
+                -resultBundlePath "../TestResults/${pkg}.xcresult" \
+                CODE_SIGNING_ALLOWED=NO
+            )
+            echo "::endgroup::"
+          done
 
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: TestResults
-          path: TestResults.xcresult
+          path: TestResults
           if-no-files-found: ignore
