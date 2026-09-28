@@ -30,10 +30,22 @@ public struct DetailContactMethodRow: View {
     }
 
     public static func phone(headerText: String, number: String) -> DetailContactMethodRow {
-        .init(headerText: headerText, value: number, systemIcon: "phone.fill")
+        .init(
+            headerText: headerText,
+            value: PhoneDisplayFormatter.format(number),
+            systemIcon: "phone.fill"
+        )
     }
 
     public static func email(_ email: String) -> DetailContactMethodRow {
-        .init(headerText: "Email", value: email, systemIcon: "envelope.fill")
+        .init(headerText: Constants.Detail.email, value: email, systemIcon: "envelope.fill")
+    }
+
+    public static func birthday(_ date: Date) -> DetailContactMethodRow {
+        .init(
+            headerText: Constants.Detail.birthday,
+            value: date.formatted(date: .abbreviated, time: .omitted),
+            systemIcon: "gift.fill"
+        )
     }
 }

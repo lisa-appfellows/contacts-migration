@@ -16,12 +16,12 @@ public struct ContainerFailureView: View {
 
     public var body: some View {
         ContentUnavailableView {
-            Label("Unable to Load Contacts", systemImage: "exclamationmark.triangle.fill")
+            Label(Constants.Container.failureTitle, systemImage: "exclamationmark.triangle.fill")
         } description: {
-            Text("Something went wrong while opening your contacts. Tap Reload to try again.")
+            Text(Constants.Container.failureDescription)
         } actions: {
             Button(action: reloadAction) {
-                Text("Reload")
+                Text(Constants.Container.reload)
                     .font(.system(.title3, weight: .bold))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 48)
@@ -29,10 +29,6 @@ public struct ContainerFailureView: View {
                     .background(Capsule())
             }
         }
-    }
-
-    private func reload() {
-        
     }
 }
 

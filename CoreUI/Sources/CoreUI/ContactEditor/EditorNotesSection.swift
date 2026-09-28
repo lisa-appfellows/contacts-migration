@@ -17,7 +17,7 @@ public struct EditorNotesSection: View {
     public var body: some View {
         Section {
             VStack(alignment: .leading) {
-                Text("Notes")
+                Text(Constants.Editor.notes)
                 TextEditor(text: $notes)
             }
             .frame(height: 180)

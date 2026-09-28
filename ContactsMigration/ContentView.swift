@@ -5,6 +5,7 @@
 //  Created by Lisa Fellows on 2026-09-21.
 //
 
+import Core
 import CoreUI
 import SwiftData
 import SwiftUI
@@ -16,31 +17,23 @@ struct ContentView: View {
     
     var body: some View {
         switch storeService.loadingState {
-        case .loading, .v2Migrating:
+        case .loading:
             ContainerLoadingView()
             
         case .containerFailure:
             ContainerFailureView {
-                // TODO: Reload Action
+                storeService.reloadContainer()
             }
             
-        case .v1Ready(let container, let event):
-            Version1.containerView(event: event) {
-                // TODO: Migrate Tapped
+        case .v1Ready(let container):
+            Version1.containerView {
+                storeService.migrateToV2()
             }
             .modelContainer(container)
             
         case .v2Ready(let container):
-            Version2.containerView(needsRepairs: false) {
-                // TODO: Refresh Repairs Tapped
-            }
-            .modelContainer(container)
-            
-        case .v2NeedsRepair(let container):
-            Version2.containerView(needsRepairs: true) {
-                // TODO: Refresh Repairs Tapped
-            }
-            .modelContainer(container)
+            Version2.containerView()
+                .modelContainer(container)
         }
     }
 }

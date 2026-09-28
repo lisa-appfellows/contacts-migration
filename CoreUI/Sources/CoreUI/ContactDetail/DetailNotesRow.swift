@@ -15,11 +15,12 @@ public struct DetailNotesRow: View {
     }
 
     public var body: some View {
-        VStack {
-            HeaderText("Notes")
+        VStack(alignment: .leading, spacing: 8) {
+            HeaderText(Constants.Detail.notes)
             Text(notes)
                 .bold()
-                .frame(height: 180)
+                .frame(maxWidth: .infinity, minHeight: 180, alignment: .topLeading)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

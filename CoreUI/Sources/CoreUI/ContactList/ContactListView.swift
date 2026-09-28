@@ -26,11 +26,11 @@ public struct ContactListView: View {
         Group {
             if model.sortedKeys.isEmpty {
                 ContentUnavailableView {
-                    Label("No Contacts", systemImage: "person.crop.circle.badge.plus")
+                    Label(Constants.List.emptyTitle, systemImage: "person.crop.circle.badge.plus")
                 } description: {
-                    Text("Add a contact to get started.")
+                    Text(Constants.List.emptyDescription)
                 } actions: {
-                    Button("Add Contact", action: newContactTapped)
+                    Button(Constants.List.addContact, action: newContactTapped)
                 }
             } else {
                 List {
@@ -46,12 +46,12 @@ public struct ContactListView: View {
                 }
             }
         }
-        .navigationTitle("Contacts")
+        .navigationTitle(Constants.List.navigationTitle)
         .toolbarBackground(Material.ultraThin, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: versionTapped) {
-                    Text("Version \(model.version)")
+                    Text(Constants.List.version(model.version))
                         .font(.caption.bold())
                 }
             }

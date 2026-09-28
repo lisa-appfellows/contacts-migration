@@ -71,3 +71,6 @@ TestResults/
 coverage/
 *.profraw
 *.profdata
+
+# Local architecture / case-study notes (not committed)
+docs/

@@ -31,6 +31,7 @@ struct EditorViewStyleModifier: ViewModifier {
             .environment(\.editMode, .constant(.active))
             .navigationTitle(navTitle)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Material.ultraThin, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     EditorDismissToolbarButton(didDismiss: didDismiss)

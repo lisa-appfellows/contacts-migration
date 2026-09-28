@@ -21,20 +21,36 @@ public struct DetailNameRow: View {
         self.company = company
     }
 
+    private var personName: String {
+        let parts = [firstName, lastName].filter { !$0.isEmpty }
+        return parts.joined(separator: " ")
+    }
+
+    private var hasPersonName: Bool { !personName.isEmpty }
+    private var hasCompany: Bool { !company.isEmpty }
+
     public var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Text(firstName + " " + lastName)
+        VStack(spacing: 4) {
+            if hasPersonName {
+                Text(personName)
                     .font(.system(size: nameSize))
+                if hasCompany {
+                    Text(company)
+                        .font(.title)
+                        .foregroundStyle(.secondary)
+                }
+            } else if hasCompany {
                 Text(company)
-                    .font(.title)
+                    .font(.system(size: nameSize))
+            } else {
+                Text(Constants.Detail.noName)
+                    .font(.system(size: nameSize))
+                    .foregroundStyle(.secondary)
             }
-            .bold()
-            .foregroundStyle(.white)
-            .shadow(color: .blue.opacity(0.8), radius: 4)
-            Spacer()
         }
+        .bold()
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
         .padding(.top, 24)
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden, edges: .all)

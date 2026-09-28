@@ -16,7 +16,7 @@ public struct EditorDeleteContactRow: View {
 
     public var body: some View {
         Button(role: .destructive, action: didDelete) {
-            Text("Delete Contact")
+            Text(Constants.Editor.deleteContact)
         }
     }
 }

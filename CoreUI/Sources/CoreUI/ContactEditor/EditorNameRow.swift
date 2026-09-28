@@ -24,9 +24,9 @@ public struct EditorNameRow: View {
 
     public var body: some View {
         Section {
-            TextField("First Name", text: $firstName)
-            TextField("Last Name", text: $lastName)
-            TextField("Company", text: $company)
+            TextField(Constants.Editor.firstName, text: $firstName)
+            TextField(Constants.Editor.lastName, text: $lastName)
+            TextField(Constants.Editor.company, text: $company)
         }
     }
 }

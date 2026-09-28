@@ -5,13 +5,12 @@
 //  Created by Lisa Fellows on 2026-09-25.
 //
 
-#if DEBUG
 import Foundation
 
-extension V1Contact {
-    static var mockList: [V1Contact] {
+extension Contact {
+    static var mockList: [Contact] {
         [
-            V1Contact(
+            Contact(
                 firstName: "Alice",
                 lastName: "Adams",
                 company: "Northwind Labs",
@@ -20,7 +19,7 @@ extension V1Contact {
                 birthday: date(year: 1990, month: 3, day: 12),
                 notes: "Met at WWDC"
             ),
-            V1Contact(
+            Contact(
                 firstName: "Aaron",
                 lastName: "Allen",
                 company: "Brightside Media",
@@ -28,7 +27,7 @@ extension V1Contact {
                 email: "aaron.allen@example.com"
             ),
             // B
-            V1Contact(
+            Contact(
                 firstName: "Bella",
                 lastName: "Baker",
                 company: "Baker & Co",
@@ -36,14 +35,14 @@ extension V1Contact {
                 email: "bella.baker@example.com",
                 birthday: date(year: 1988, month: 7, day: 4)
             ),
-            V1Contact(
+            Contact(
                 firstName: "Brian",
                 lastName: "Brooks",
                 phoneNumber: "555-0104",
                 email: "brian.brooks@example.com",
                 notes: "Prefers text"
             ),
-            V1Contact(
+            Contact(
                 firstName: "Chloe",
                 lastName: "Brown",
                 company: "Harbor Design",
@@ -52,7 +51,7 @@ extension V1Contact {
                 birthday: date(year: 1995, month: 11, day: 21)
             ),
             // C
-            V1Contact(
+            Contact(
                 firstName: "Carlos",
                 lastName: "Carter",
                 company: "Summit Fitness",
@@ -60,7 +59,7 @@ extension V1Contact {
                 email: "carlos.carter@example.com"
             ),
             // D
-            V1Contact(
+            Contact(
                 firstName: "Diana",
                 lastName: "Diaz",
                 company: "Diaz Consulting",
@@ -70,14 +69,14 @@ extension V1Contact {
                 notes: "College roommate"
             ),
             // F
-            V1Contact(
+            Contact(
                 firstName: "Frank",
                 lastName: "Foster",
                 phoneNumber: "555-0108",
                 email: "frank.foster@example.com"
             ),
             // H
-            V1Contact(
+            Contact(
                 firstName: "Hannah",
                 lastName: "Hayes",
                 company: "Lumen Studio",
@@ -85,20 +84,20 @@ extension V1Contact {
                 email: "hannah.hayes@example.com",
                 birthday: date(year: 1993, month: 5, day: 18)
             ),
-            V1Contact(
+            Contact(
                 firstName: "Hector",
                 lastName: "Hernandez",
                 company: "River City Bank",
                 phoneNumber: "555-0110",
                 email: "hector.hernandez@example.com"
             ),
-            V1Contact(
+            Contact(
                 company: "Hospital",
                 phoneNumber: "555-0911",
                 email: "admin@hospital.com"
             ),
             // J
-            V1Contact(
+            Contact(
                 firstName: "Julia",
                 lastName: "Johnson",
                 company: "Peak Analytics",
@@ -107,7 +106,7 @@ extension V1Contact {
                 notes: "Introduced by Hannah"
             ),
             // K
-            V1Contact(
+            Contact(
                 firstName: "Kenji",
                 lastName: "Kim",
                 company: "Orbit Systems",
@@ -116,14 +115,14 @@ extension V1Contact {
                 birthday: date(year: 1991, month: 9, day: 30)
             ),
             // M
-            V1Contact(
+            Contact(
                 firstName: "Maria",
                 lastName: "Martinez",
                 company: "Verde Kitchen",
                 phoneNumber: "555-0113",
                 email: "maria.martinez@example.com"
             ),
-            V1Contact(
+            Contact(
                 firstName: "Miles",
                 lastName: "Mitchell",
                 phoneNumber: "555-0114",
@@ -131,7 +130,7 @@ extension V1Contact {
                 birthday: date(year: 1987, month: 2, day: 14),
                 notes: "Plays tennis on Saturdays"
             ),
-            V1Contact(
+            Contact(
                 firstName: "Nora",
                 lastName: "Moore",
                 company: "Moore Legal",
@@ -139,7 +138,7 @@ extension V1Contact {
                 email: "nora.moore@example.com"
             ),
             // P
-            V1Contact(
+            Contact(
                 firstName: "Priya",
                 lastName: "Patel",
                 company: "Nimbus Health",
@@ -148,7 +147,7 @@ extension V1Contact {
                 birthday: date(year: 1994, month: 8, day: 7)
             ),
             // R
-            V1Contact(
+            Contact(
                 firstName: "Rafael",
                 lastName: "Ramirez",
                 company: "Skyline Architecture",
@@ -156,14 +155,14 @@ extension V1Contact {
                 email: "rafael.ramirez@example.com"
             ),
             // S
-            V1Contact(
+            Contact(
                 firstName: "Sophie",
                 lastName: "Sullivan",
                 phoneNumber: "555-0118",
                 email: "sophie.sullivan@example.com",
                 notes: "Book club"
             ),
-            V1Contact(
+            Contact(
                 firstName: "Sora",
                 lastName: "Sato",
                 company: "Sakura Tea Co",
@@ -172,7 +171,7 @@ extension V1Contact {
                 birthday: date(year: 1989, month: 12, day: 3)
             ),
             // W
-            V1Contact(
+            Contact(
                 firstName: "William",
                 lastName: "Williams",
                 company: "Williams Logistics",
@@ -181,7 +180,7 @@ extension V1Contact {
                 birthday: date(year: 1979, month: 6, day: 25)
             ),
             // #
-            V1Contact(
+            Contact(
                 phoneNumber: "555-0121",
                 email: "blank.blank@example.com",
                 birthday: date(year: 1979, month: 6, day: 25)
@@ -193,4 +192,3 @@ extension V1Contact {
         Calendar.current.date(from: DateComponents(year: year, month: month, day: day))!
     }
 }
-#endif
