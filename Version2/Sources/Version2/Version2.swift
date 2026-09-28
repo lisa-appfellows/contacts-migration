@@ -12,13 +12,8 @@ public enum Version2 {
         )
     }
 
-    public static func containerView(needsRepairs: Bool, refreshRepairsTapped: @escaping () -> Void) -> some View {
-        V2ContainerView(needsRepairs: needsRepairs, refreshRepairsTapped: refreshRepairsTapped)
-    }
-
-    public static func postMigration(container: ModelContainer) -> any PostMigrationService {
-        PostMigration(container: container)
-    }
+    @MainActor
+    public static func containerView() -> some View { ContainerView() }
 }
 
 enum V2Schema: VersionedSchema {

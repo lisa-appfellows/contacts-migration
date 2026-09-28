@@ -5,6 +5,7 @@
 //  Created by Lisa Fellows on 2026-09-21.
 //
 
+import Core
 import SwiftData
 import SwiftUI
 
@@ -17,6 +18,7 @@ struct ContactsMigrationApp: App {
             ContentView()
                 .id(storeService.isVersion1)
                 .environment(storeService)
+                .environment(\.versionState, storeService.versionState)
         }
     }
 }

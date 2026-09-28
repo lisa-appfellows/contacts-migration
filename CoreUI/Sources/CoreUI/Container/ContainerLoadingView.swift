@@ -28,7 +28,7 @@ public struct ContainerLoadingView: View {
                 }
             }
             .redacted(reason: .placeholder)
-            .navigationTitle("Contacts")
+            .navigationTitle(Constants.Container.navigationTitle)
         }
     }
 }

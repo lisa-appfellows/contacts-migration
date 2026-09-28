@@ -29,7 +29,7 @@ final class ContactPresentationModelTests: XCTestCase {
         )
         XCTAssertEqual(
             ContactPresentationModel(contact: StubContact()).presentationName,
-            ""
+            "No Name"
         )
     }
 

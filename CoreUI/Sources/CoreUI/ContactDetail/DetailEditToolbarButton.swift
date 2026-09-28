@@ -15,13 +15,6 @@ public struct DetailEditToolbarButton: View {
     }
 
     public var body: some View {
-        Button(action: action) {
-            Text("Edit")
-                .frame(height: 35)
-                .padding(.horizontal)
-                .foregroundStyle(.white)
-                .background(Color.blue.opacity(0.5))
-                .clipShape(Capsule())
-        }
+        Button(Constants.Detail.edit, action: action)
     }
 }

@@ -33,8 +33,10 @@ public struct EditorMetadataSection<Content: View, Item: Hashable>: View {
 
     public var body: some View {
         Section {
-            ForEach($items, id: \.self) { $item in
-                content($item)
+            // Index-based identity keeps TextFields focused while values change.
+            // `id: \.self` recreates rows on every keystroke for String/Date items.
+            ForEach(items.indices, id: \.self) { index in
+                content($items[index])
             }
             .onDelete { indexSet in
                 items.remove(atOffsets: indexSet)

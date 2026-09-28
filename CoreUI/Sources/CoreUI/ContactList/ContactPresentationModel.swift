@@ -32,7 +32,7 @@ public struct ContactPresentationModel {
         if let lastName = contact.lastName { return lastName }
         if let companyName = contact.company { return companyName }
 
-        return ""
+        return Constants.List.noName
     }
 
     public func letter(isFirstName: Bool) -> String? {

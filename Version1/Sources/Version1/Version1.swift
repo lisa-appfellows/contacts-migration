@@ -2,8 +2,6 @@ import SwiftData
 import SwiftUI
 
 public enum Version1 {
-    public enum StoreEvent: Equatable { case none, v2ContainerFailed }
-
     public static func container(inMemoryOnly: Bool) throws -> ModelContainer {
         try ModelContainer(
             for: Schema(versionedSchema: V1Schema.self),
@@ -12,8 +10,8 @@ public enum Version1 {
         )
     }
 
-    public static func containerView(event: StoreEvent, migrateTapped: @escaping () -> Void) -> some View {
-        V1ContainerView(event: event, migrateTapped: migrateTapped)
+    public static func containerView(migrateTapped: @escaping () -> Void) -> some View {
+        ContainerView(migrateTapped: migrateTapped)
     }
 }
 

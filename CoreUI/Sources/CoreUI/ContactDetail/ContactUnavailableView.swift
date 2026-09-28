@@ -16,12 +16,12 @@ public struct ContactUnavailableView: View {
 
     public var body: some View {
         ContentUnavailableView {
-            Label("Unable to Load Contact", systemImage: "exclamationmark.triangle.fill")
+            Label(Constants.Detail.unavailableTitle, systemImage: "exclamationmark.triangle.fill")
         } description: {
-            Text("Something went wrong while opening your contact. Tap Reload to try again.")
+            Text(Constants.Detail.unavailableDescription)
         } actions: {
             Button(action: reloadAction) {
-                Text("Reload")
+                Text(Constants.Detail.reload)
                     .font(.system(.title3, weight: .bold))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 48)
